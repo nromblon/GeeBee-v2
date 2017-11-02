@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:keepScreenOn="true"
+    tools:context=".activities.MonitoringMainActivity"
+    android:clickable="true"
+    android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/linearLayoutECA"
+        style="@style/DefaultBackground">
+
+        <FrameLayout
+            android:layout_width="@dimen/activity_eca_small"
+            android:layout_height="@dimen/activity_eca_small"
+            android:id="@+id/placeholderECA"
+            android:longClickable="false"
+            style="@style/ECAPlaceholder" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/placeholderECAText"
+            android:paddingTop="10dp"
+            android:padding="5dp"
+            style="@style/DefaultBackground" />
+
+        <TextView
+            style="@style/DefaultBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/placeholderResults"
+            android:paddingTop="10dp"
+            android:padding="5dp"
+            android:maxLines="3"
+            android:scrollbars="vertical" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:id="@+id/remarkLayout">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/remarks_or_comments"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:id="@+id/questionMonitoringConsultationChoice"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/add_remarks"
+                android:gravity="top|left"
+                android:padding="10sp"
+                android:background="@drawable/chalkoutline3"
+                android:inputType="textCapSentences|textMultiLine"
+                android:ems="10"
+                android:id="@+id/remarkText"
+                android:layout_below="@+id/questionMonitoringConsultationChoice"
+                android:layout_alignParentStart="true"
+                android:layout_above="@+id/saveButton"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="@string/save"
+                android:id="@+id/saveButton"
+                style="@style/TestButton"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/monitoringFragmentContainer"
+        android:layout_toStartOf="@+id/linearLayoutECA"
+        android:animateLayoutChanges="true"
+        tools:layout="@layout/fragment_monitoring"
+        style="@style/DefaultBackground" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toStartOf="@+id/linearLayoutECA"
+        android:orientation="vertical"
+        style="@style/DefaultBackground"
+        android:gravity="center"
+        android:id="@+id/ecaTextTransitionLayout"
+        android:animateLayoutChanges="true"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:id="@+id/ecaTransitionTextView"
+            android:gravity="center" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ready"
+            android:id="@+id/readyButton"
+            android:textSize="35sp"
+            android:padding="20dp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

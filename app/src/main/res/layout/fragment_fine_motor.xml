@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.FineMotorFragment"
+    style="@style/DefaultBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:id="@+id/relativeLayoutTest"
+        android:padding="10dp"
+        android:layout_above="@+id/linearLayoutYesNo">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageViewPathToTrace"
+            android:background="#ffffff" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayoutYesNo"
+        android:weightSum="2"
+        android:visibility="gone"
+        style="@style/DefaultBackground">
+
+        <Button
+            android:drawableTop="@drawable/button_face_happy"
+            android:paddingTop="5dp"
+            android:drawablePadding="-5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/YesButton"
+            android:minWidth="250dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            style="@style/TestButton" />
+
+        <Button
+            android:drawableTop="@drawable/button_face_sad"
+            android:paddingTop="5dp"
+            android:drawablePadding="-5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/NoButton"
+            android:minWidth="250dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            style="@style/TestButton" />
+
+    </LinearLayout>
+
+</RelativeLayout>

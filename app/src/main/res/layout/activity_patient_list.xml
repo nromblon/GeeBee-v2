@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:keepScreenOn="true"
+    style="@style/DefaultBackground"
+    tools:context=".activities.PatientListActivity">
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="@dimen/activity_eca_small"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/linearLayoutECA"
+        style="@style/DefaultBackground">
+
+        <FrameLayout
+            android:layout_width="@dimen/activity_eca_small"
+            android:layout_height="@dimen/activity_eca_small"
+            android:id="@+id/placeholderECA"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:longClickable="false"
+            android:layout_marginBottom="10dp"
+            style="@style/ECAPlaceholder" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/placeholderECAText"
+            android:paddingTop="10dp"
+            android:padding="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/placeholderECA" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/placeholderECAText">
+
+            <Button
+                android:id="@+id/addPatientButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/selectPatientButton"
+                android:layout_alignStart="@+id/selectPatientButton"
+                android:layout_marginBottom="17dp"
+                android:padding="15dp"
+                android:text="@string/new_patient"
+                android:textSize="35sp" />
+
+            <Button
+                android:id="@+id/UploadDataButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/selectPatientButton"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="11dp"
+                android:enabled="false"
+                android:padding="15dp"
+                android:text="Sync Data"
+                android:textColor="#757575"
+                android:textSize="35sp" />
+
+            <Button
+                android:id="@+id/selectPatientButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/UploadDataButton"
+                android:layout_centerVertical="true"
+                android:enabled="false"
+                android:padding="15dp"
+                android:text="@string/select_patient"
+                android:textColor="#757575"
+                android:textSize="30sp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/secretButton"
+                android:background="@android:color/transparent"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:enabled="false" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/search_input"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/search_patients_hint"
+        android:textSize="25sp"
+        android:inputType="text"
+        android:layout_toStartOf="@+id/linearLayoutECA" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:showDividers="middle"
+        android:layout_toStartOf="@+id/linearLayoutECA"
+        android:layout_below="@+id/search_input">
+
+        <ListView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/patientListView" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/patientDetailsTV"
+                android:padding="20dp"
+                android:textSize="50sp"
+                android:layout_above="@+id/patientRecordsTextView" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/patientRecordsTextView"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:maxLines="10"
+                android:scrollbars="vertical" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

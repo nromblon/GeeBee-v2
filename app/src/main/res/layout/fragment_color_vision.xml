@@ -1,0 +1,85 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/DefaultBackground"
+    tools:context=".fragments.ColorVisionFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:id="@+id/relativeLayoutTest"
+        style="@style/DefaultBackground"
+        android:layout_above="@+id/linearLayoutYesNo">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/ishiharaPlate"
+            android:layout_centerInParent="true"
+            style="@style/DefaultBackground" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:padding="10dp"
+        android:id="@+id/linearLayoutYesNo"
+        android:weightSum="1">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="fitCenter"
+            android:id="@+id/cvt_option1"
+            android:background="@drawable/testbutton_pink"
+            android:layout_weight="0.2" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="fitCenter"
+            android:id="@+id/cvt_option2"
+            android:background="@drawable/testbutton_yellow"
+            android:layout_weight="0.2" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="fitCenter"
+            android:id="@+id/cvt_option3"
+            android:background="@drawable/testbutton_green"
+            android:layout_weight="0.2" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="fitCenter"
+            android:id="@+id/cvt_option4"
+            android:background="@drawable/testbutton_blue"
+            android:layout_weight="0.2" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:id="@+id/cvt_option5"
+            android:background="@drawable/testbutton_purple"
+            android:layout_weight="0.2" />
+    </LinearLayout>
+
+</RelativeLayout>

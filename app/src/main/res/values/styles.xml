@@ -1,0 +1,38 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:buttonStyle">@style/DefaultButton</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#FFF9C4</item>
+        <item name="android:textColorTertiary">#FFFDE7</item>
+        <item name="android:textColorHint">#E0E0E0</item>
+    </style>
+
+    <style name="DefaultButton" parent="android:style/Widget.Button">
+        <item name="android:background">@drawable/button_selector</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColorPrimaryDisableOnly">#E0E0E0</item>
+
+    </style>
+
+    <style name="DefaultBackground">
+        <item name="android:background">#1B5E20</item>
+    </style>
+
+    <style name="ECAPlaceholder" parent="android:Widget">
+        <item name="android:src">#00BCD4</item>
+    </style>
+
+    <style name="TestButton" parent="android:Widget.Button">
+        <item name="android:textSize">35sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@drawable/button_selector</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+</resources>

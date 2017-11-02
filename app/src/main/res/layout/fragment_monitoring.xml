@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/DefaultBackground"
+    tools:context=".fragments.MonitoringFragment">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:id="@+id/monitoringQuestionView"
+        android:visibility="visible"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="60sp"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/questionView"
+            android:gravity="center"
+            android:layout_centerHorizontal="true" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/questionView"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <NumberPicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/monitoringNumberPicker"
+                android:layout_centerHorizontal="true"
+                android:descendantFocusability="blocksDescendants"></NumberPicker>
+
+            <TextView
+                android:layout_marginLeft="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="60sp"
+                android:gravity="center"
+                android:id="@+id/unitView"
+                android:layout_gravity="center_vertical" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:textSize="35sp"
+        android:padding="15dp"
+        android:id="@+id/saveAnswerButton"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp" />
+
+</RelativeLayout>

@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/DefaultBackground"
+    tools:context=".fragments.HearingMainFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:id="@+id/relativeLayoutTest"
+        android:layout_above="@+id/linearLayoutYesNo">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/hearingTestImage"
+            android:layout_centerInParent="true"
+            android:src="@drawable/hearing_test" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayoutYesNo"
+        android:weightSum="1">
+
+        <Button
+            android:paddingTop="15dp"
+            android:drawablePadding="-15dp"
+            android:drawableTop="@drawable/button_face_happy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/YesButton"
+            style="@style/TestButton" />
+
+    </LinearLayout>
+
+</RelativeLayout>

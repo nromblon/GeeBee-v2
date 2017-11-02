@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.VisualAcuityFragment"
+    style="@style/DefaultBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:id="@+id/relativeLayoutTest"
+        android:layout_above="@+id/linearLayoutYesNo">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chartLine"
+            android:background="#FFFFFF"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/DefaultBackground"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayoutYesNo"
+        android:weightSum="1">
+
+        <Button
+            android:drawableTop="@drawable/button_face_happy"
+            android:paddingTop="5dp"
+            android:drawablePadding="-5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/YesButton"
+            android:minWidth="250dp"
+            android:layout_weight="0.50"
+            style="@style/TestButton" />
+
+        <Button
+            android:drawableTop="@drawable/button_face_sad"
+            android:paddingTop="5dp"
+            android:drawablePadding="-5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/NoButton"
+            android:minWidth="250dp"
+            android:layout_weight="0.50"
+            style="@style/TestButton" />
+    </LinearLayout>
+</RelativeLayout>

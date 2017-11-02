@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    style="@style/DefaultBackground"
+    tools:context=".activities.ConsultationActivity">
+
+    <FrameLayout
+        android:layout_width="@dimen/activity_eca_big"
+        android:layout_height="@dimen/activity_eca_big"
+        android:id="@+id/placeholderECA"
+        android:longClickable="false"
+        style="@style/ECAPlaceholder" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/choicesLayout"
+        android:layout_centerInParent="true"
+        android:layout_toEndOf="@+id/placeholderECA"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="70sp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/placeholderECAText"
+            android:layout_alignParentTop="true" />
+
+        <Button
+            android:drawableLeft="@drawable/button_yes_check"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Yes"
+            android:textSize="50sp"
+            android:padding="20dp"
+            android:id="@+id/YesButton"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/placeholderECAText"
+            android:layout_alignStart="@+id/NoButton"
+            android:layout_alignEnd="@+id/NoButton" />
+
+        <Button
+            android:drawableLeft="@drawable/button_no_cross"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:text="@string/No"
+            android:textSize="50sp"
+            android:padding="20dp"
+            android:id="@+id/NoButton"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/YesButton"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/hpiLayout"
+        android:layout_centerInParent="true"
+        android:layout_toEndOf="@+id/placeholderECA"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/hpiTitle"
+            android:text="@string/hpi"
+            android:textSize="70sp"
+            android:layout_gravity="center" />
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="50sp"
+                android:id="@+id/hpiPlaceholder"
+                android:textColor="#ffffff" />
+        </ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>

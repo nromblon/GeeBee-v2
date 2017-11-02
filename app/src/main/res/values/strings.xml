@@ -1,0 +1,113 @@
+<resources>
+    <string name="app_name">GeeBee</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_calibration">CalibrationActivity</string>
+    <string name="title_activity_hearing_calibration">HearingCalibrationActivity</string>
+    <string name="calibration_in_progress">Calibrating...</string>
+    <string name="title_activity_consultation">ConsultationActivity</string>
+    <string name="title_activity_monitoring_consultation_choice">MonitoringConsultationChoice</string>
+    <string name="MonitoringOrConsultationQuestion">What would you like to do?</string>
+    <string name="Monitoring">Monitoring</string>
+    <string name="Consultation">Consultation</string>
+    <string name="title_activity_patient_list">PatientListActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="school_name">School Name</string>
+    <string name="visualacuity_chart_name">Visual Acuity Chart</string>
+    <string name="save">Save</string>
+    <string name="search_patients_hint">Search patients...</string>
+    <string name="calibrate_button">Calibrate</string>
+    <string name="calibrate_settings">Calibrate Hearing Test</string>
+    <string name="title_activity_add_patient">AddPatientActivity</string>
+    <string name="first_name">What is your first name?</string>
+    <string name="last_name">What is your last name?</string>
+    <string name="birthdate">What is your birth date?</string>
+    <string name="gender">Are you a male or a female?</string>
+    <string name="handedness">Are you right-handed or left-handed?</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="right_handed">Right-Handed</string>
+    <string name="left_handed">Left-Handed</string>
+    <string name="title_activity_monitoring">MonitoringActivity</string>
+    <string name="centimeters">cm</string>
+    <string name="kilograms">kg</string>
+    <string name="remarks_or_comments">Remarks</string>
+    <string name="hpi">HPI</string>
+    <string name="remarks">Remarks</string>
+    <string name="add_remarks">Type remarks here...</string>
+    <string name="add_school">+</string>
+    <string name="remove_school">-</string>
+
+    <!--Spinner Items-->
+    <string-array name="visualacuity_chart_names">
+        <item>Snellen Eye Chart</item>
+        <item>Tumbling E Eye Chart</item>
+    </string-array>
+
+    <!-- Buttons -->
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="NA">N/A</string>
+    <string name="continueWord">Continue</string>
+    <string name="retake">Retake</string>
+    <string name="takePicture">Take Picture</string>
+    <string name="skip" translatable="false">Skip</string>
+    <string name="new_patient">New Patient</string>
+    <string name="select_patient">Select Patient</string>
+    <string name="cancel">Cancel</string>
+    <string name="cant_perform_task">Cannot Perform Task</string>
+    <string name="ready">Ready!</string>
+
+
+    <!-- ECA Strings-->
+    <string name="app_intro">"Hi, I'm Jeebee! I'm your personal healthcare assistant. Let's get started!"</string>
+    <string name="patient_list_instruction">What\'s your name? Find your name in the list. If it\'s not there, press new user so I can get to know you better.</string>
+    <string name="add_patient_confirm">Is this correct?</string>
+    <string name="monitoring_consultation_choice">What do you want to do? If you want to have a check up, press monitoring. If you feel sick, press consultation, and let\'s talk about it.</string>
+    <string name="monitoring_weight">What is your weight?</string>
+    <string name="monitoring_height">What is your height?</string>
+    <string name="vaccination_instruction">Do you have a vaccination record? If not, just press skip.</string>
+    <string name="vaccination_confirm">Is the picture okay? If yes, press continue.</string>
+    <string name="patientPicture_instruction">Take a selfie!</string>
+    <string name="patientPicture_confirm">Is your picture okay? If yes, press continue.</string>
+    <string name="visualAcuity_intro">Let\'s check your eyesight.</string>
+    <string name="visualAcuity_instruction_left">Cover your left eye.</string>
+    <string name="visualAcuity_instruction_right">Now, uncover your left eye. Then, cover your right eye.</string>
+    <string name="colorVision_intro">Now let\'s check how well you can see colors. Tell me the shape you see by pressing the buttons below.</string>
+    <string name="hearing_intro">Let\'s find out how well you can hear. Please wear the earphones. Press the Yes button every time you hear a sound.</string>
+    <string name="grossmotor_intro">Let\'s do some fun exercises!</string>
+    <string name="finemotor_intro">Now, let\'s do this fun activity.</string>
+    <string name="finemotor_path1_1">Help the butterfly go to the flowers. Use a finger from your non-dominant hand to trace the path.</string>
+    <string name="finemotor_path1_2">Help the butterfly go to the flowers. Use the pen with your dominant hand to trace the path.</string>
+    <string name="finemotor_question">Assistant, has the user used the pen without difficulties?</string>
+    <string name="finemotor_path2_1">Help the lion go to his friends. Use a finger of your non dominant hand to trace the path.</string>
+    <string name="finemotor_path2_2">Help the lion go to his friends. Use the pen with your dominant hand to trace the path.</string>
+    <string name="monitoring_end">Your check up is done!</string>
+    <string name="consultation_end">Thanks for telling me about your problem! I\'ll send this to a doctor so they can help you soon.</string>
+    <string name="monitoring_ready">Assistant, press ready button when the child is ready.</string>
+    <string name="remarks_monitoring">Assistant, do you want to add remarks regarding the child\'s monitoring tests?</string>
+    <string name="remarks_add_patient">Assistant, do you want to add remarks to the child\'s profile?</string>
+
+    <!-- ECA Remarks-->
+    <string name="monitoring_remark_normal1">Keep eating healthy food!</string>
+    <string name="monitoring_remark_normal2">Don\'t forget to eat vegetables!</string>
+    <string name="monitoring_remark_normal3">Don\'t forget to exercise!</string>
+    <string name="monitoring_remark_below1">Eat more healthy food!</string>
+    <string name="monitoring_remark_below2">Drink milk everyday!</string>
+    <string name="monitoring_remark_below3">Eat fruits and vegetables!</string>
+    <string name="monitoring_remark_above1">Exercise more!</string>
+    <string name="monitoring_remark_above2">Eat healthy food!</string>
+    <string name="monitoring_remark_above3">Eat your fruits and vegetables!</string>
+    <string name="visual_acuity_fail">You seem to have some problems seeing. Try to visit an eye doctor when you can!</string>
+    <string name="visual_acuity_pass">Your vision is great!</string>
+    <string name="color_vision_fail">It looks like you\'re having problems seeing colors. Try to visit an eye doctor about it when you can!</string>
+    <string name="color_vision_pass">Your vision is great!</string>
+    <string name="hearing_fail">You seem to have hearing problems. Try to visit an ear doctor when you can!</string>
+    <string name="hearing_pass">Your hearing is great!</string>
+    <string name="grossmotor_fail">Work on your gross motor skills! Try to exercise more and play outside.</string>
+    <string name="grossmotor_pass">Your gross motor skills are great!</string>
+    <string name="grossmotor_na">That\'s okay! Let\'s move on to the next test.</string>
+    <string name="finemotor_fail">You may need to work on your fine motor skills!</string>
+    <string name="finemotor_pass">Your fine motor skills are great!</string>
+    <string name="recording_in_progress">Recording...</string>
+
+</resources>

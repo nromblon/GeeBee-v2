@@ -1,0 +1,155 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/DefaultBackground"
+    tools:context="com.geebeelicious.geebeelicious.fragments.RemarksFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/remarkLayout"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/remarks"
+            android:id="@+id/remarkTitle"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="70sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/remarkText"
+            android:layout_below="@+id/remarkTitle"
+            android:layout_centerHorizontal="true"
+            android:inputType="textCapSentences|textMultiLine"
+            android:layout_margin="20dp"
+            android:layout_above="@+id/recordPlayButtonLayout"
+            android:gravity="top|start"
+            android:background="@drawable/chalkoutline3"
+            android:hint="@string/add_remarks"
+            android:padding="10dp"
+            android:textSize="40sp" />
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/recordPlayButtonLayout"
+            android:layout_margin="20dp">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/recordButton"
+                android:src="@drawable/btn_record"
+                android:background="@drawable/button_selector" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/playButton"
+                android:layout_toEndOf="@+id/recordButton"
+                android:src="@drawable/btn_play"
+                android:visibility="gone"
+                android:background="@drawable/button_selector" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/save"
+                android:id="@+id/saveButton"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recordingProgressLayout"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/recordPlayButtonLayout"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recording_in_progress"
+                android:textSize="75sp"
+                android:id="@+id/calibrationInProgressTextView" />
+
+            <ProgressBar
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/recordingProgressBar" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/remarksQuestionLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/remarksQuestion"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="70sp"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/linearLayoutYesNo"
+            android:weightSum="1">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/yesButton"
+                android:minWidth="250dp"
+                android:layout_weight="0.50"
+                android:text="@string/Yes"
+                style="@style/TestButton" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/noButton"
+                android:minWidth="250dp"
+                android:layout_weight="0.50"
+                android:text="@string/No"
+                style="@style/TestButton" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
