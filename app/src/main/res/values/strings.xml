@@ -36,6 +36,7 @@
     <string name="add_remarks">Type remarks here...</string>
     <string name="add_school">+</string>
     <string name="remove_school">-</string>
+    <string name="use_app">Use App</string>
 
     <!--Spinner Items-->
     <string-array name="visualacuity_chart_names">

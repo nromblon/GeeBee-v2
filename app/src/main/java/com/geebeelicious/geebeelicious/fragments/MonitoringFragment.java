@@ -2,6 +2,9 @@ package com.geebeelicious.geebeelicious.fragments;
 
 
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.graphics.Interpolator;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -141,7 +144,33 @@ public class MonitoringFragment extends MonitoringTestFragment {
             }
         });
 
+        Button useAppButton = (Button) view.findViewById(R.id.useIPAppButton);
+        useAppButton.setTypeface(chalkFont);
+        useAppButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setComponent(new ComponentName("ph.edu.dlsu.reanna_lim.imageprocessingmodule","ph.edu.dlsu.reanna_lim.imageprocessingmodule.MainActivityTablet"));
+                startActivityForResult(intent, 1);
+            }
+        });
+
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 1) {
+            String str_height = data.getExtras().getString("height");
+            String str_weight = data.getExtras().getString("weight");
+
+            record.setHeight(Double.parseDouble(str_height));
+            record.setWeight(Double.parseDouble(str_weight));
+
+            endMonitoring();
+        }
     }
 
     /**

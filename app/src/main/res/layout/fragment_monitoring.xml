@@ -62,4 +62,16 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="20dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/use_app"
+        android:textSize="35sp"
+        android:padding="15dp"
+        android:id="@+id/useIPAppButton"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp" />
+
 </RelativeLayout>
