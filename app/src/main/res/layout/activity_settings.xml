@@ -15,23 +15,26 @@
         android:layout_above="@+id/saveSettingsButton"
         android:padding="15dp">
 
-        <TableRow android:weightSum="5">
+        <TableRow
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:text="@string/visualacuity_chart_name"
                 android:id="@+id/visualacuitychartNameTV"
-                android:layout_gravity="right"
-                android:layout_weight="1" />
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:text="@string/visualacuity_chart_name"
+                android:textSize="30sp" />
 
             <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/visualacuitychartSpinner"
-                android:layout_gravity="left"
-                android:layout_weight="4" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></Spinner>
+
+
 
         </TableRow>
 
@@ -39,8 +42,8 @@
 
             <TextView
                 android:id="@+id/calibrateHearingTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="end"
                 android:layout_weight="1"
                 android:text="@string/calibrate_settings"
@@ -65,10 +68,9 @@
 
             <TextView
                 android:id="@+id/schoolnameTV"
-                android:layout_width="202dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity=""
                 android:text="@string/school_name"
                 android:textSize="30sp" />
 
@@ -78,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="13dp"
-                android:layout_weight="4" />
+                android:layout_weight="5" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -105,6 +107,18 @@
 
 
     </TableLayout>
+
+    <Button
+        android:id="@+id/UploadDataButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/saveSettingsButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="17dp"
+        android:enabled="true"
+        android:padding="15dp"
+        android:text="Sync Data"
+        android:textSize="35sp" />
 
     <Button
         android:layout_width="match_parent"

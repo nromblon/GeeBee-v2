@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GeeBee.iml" filepath="$PROJECT_DIR$/GeeBee.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Source Code.iml" filepath="$PROJECT_DIR$/Source Code.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

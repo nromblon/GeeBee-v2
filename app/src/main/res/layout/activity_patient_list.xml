@@ -63,10 +63,9 @@
                 android:layout_below="@+id/selectPatientButton"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="11dp"
-                android:enabled="false"
+                android:enabled="true"
                 android:padding="15dp"
                 android:text="Sync Data"
-                android:textColor="#757575"
                 android:textSize="35sp" />
 
             <Button
