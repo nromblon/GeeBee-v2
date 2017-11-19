@@ -2,13 +2,17 @@ package com.geebeelicious.geebeelicious.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.nfc.Tag;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.geebeelicious.geebeelicious.R;
+import com.geebeelicious.geebeelicious.activities.SettingsActivity;
 import com.geebeelicious.geebeelicious.models.consultation.School;
 
 import java.util.ArrayList;
@@ -28,21 +32,32 @@ public class SchoolsRecyclerAdapter extends RecyclerView.Adapter<SchoolsRecycler
     private Typeface chalkFont;
     private ArrayList<School> schools;
     private Context schoolContext;
+    private  RecyclerViewClickListener itemListener;
+    private int selectedIndex = -1;
 
-    public class SchoolViewHolder extends RecyclerView.ViewHolder {
+    public class SchoolViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView tv_schoolName, tv_municipalityName;
 
-        public SchoolViewHolder(View itemView) {
+        SchoolViewHolder(View itemView) {
             super(itemView);
             tv_schoolName = (TextView) itemView.findViewById(R.id.school_name_list);
             tv_municipalityName = (TextView) itemView.findViewById(R.id.school_municipality_list);
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            itemListener.recyclerViewListClicked(v, this.getLayoutPosition());
+            selectedIndex = this.getLayoutPosition();
+            Toast.makeText(getContext(), schools.get(selectedIndex).getSchoolName() + " selected", Toast.LENGTH_SHORT).show();
+            Log.d("SchoolsRecyclerAdapter", "Selected Index: " + selectedIndex);
+        }
     }
 
-    public SchoolsRecyclerAdapter(Context context, ArrayList<School> schools) {
+    public SchoolsRecyclerAdapter(Context context, ArrayList<School> schools,  RecyclerViewClickListener itemListener) {
         this.schools = schools;
         this.schoolContext = context;
+        this.itemListener = itemListener;
     }
 
     @Override
@@ -70,6 +85,9 @@ public class SchoolsRecyclerAdapter extends RecyclerView.Adapter<SchoolsRecycler
     public int getItemCount() {
         return schools.size();
     }
+
+    public int getSelectedIndex(){return selectedIndex;}
+
 
 
 }

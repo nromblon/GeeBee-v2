@@ -45,6 +45,10 @@ public class School {
      */
     private String municipality;
 
+
+
+    private int municipalityId;
+
     /**
      * Constructor.
      *
@@ -54,6 +58,18 @@ public class School {
      */
     public School(int schoolId, String schoolName, String municipality) {
         this.schoolId = schoolId;
+        this.schoolName = schoolName;
+        this.municipality = municipality;
+
+    }
+
+    public School(String schoolName, String municipality, int municipalityId) {
+        this.schoolName = schoolName;
+        this.municipality = municipality;
+        this.municipalityId = municipalityId;
+    }
+
+    public School(String schoolName, String municipality) {
         this.schoolName = schoolName;
         this.municipality = municipality;
     }
@@ -83,5 +99,13 @@ public class School {
      */
     public String getMunicipality() {
         return municipality;
+    }
+
+    public int getMunicipalityId() {
+        return municipalityId;
+    }
+
+    public void setMunicipalityId(int municipalityId) {
+        this.municipalityId = municipalityId;
     }
 }
