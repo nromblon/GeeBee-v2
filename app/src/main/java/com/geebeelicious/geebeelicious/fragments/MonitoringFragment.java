@@ -16,6 +16,7 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.geebeelicious.geebeelicious.R;
+import com.geebeelicious.geebeelicious.activities.MonitoringMainActivity;
 import com.geebeelicious.geebeelicious.interfaces.MonitoringTestFragment;
 import com.geebeelicious.geebeelicious.interfaces.OnMonitoringFragmentInteractionListener;
 import com.geebeelicious.geebeelicious.models.bmi.BMICalculator;
@@ -163,13 +164,18 @@ public class MonitoringFragment extends MonitoringTestFragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == 1) {
-            String str_height = data.getExtras().getString("height");
-            String str_weight = data.getExtras().getString("weight");
+            if(resultCode == Activity.RESULT_OK) {
+                String str_height = data.getExtras().getString("height");
+                String str_weight = data.getExtras().getString("weight");
 
-            record.setHeight(Double.parseDouble(str_height));
-            record.setWeight(Double.parseDouble(str_weight));
+                record.setHeight(Double.parseDouble(str_height));
+                record.setWeight(Double.parseDouble(str_weight));
 
-            endMonitoring();
+                endMonitoring();
+            }
+            if(resultCode == Activity.RESULT_CANCELED) {
+                super.onResume();
+            }
         }
     }
 
