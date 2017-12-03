@@ -167,9 +167,11 @@ public class MonitoringFragment extends MonitoringTestFragment {
             if(resultCode == Activity.RESULT_OK) {
                 String str_height = data.getExtras().getString("height");
                 String str_weight = data.getExtras().getString("weight");
+                byte[] silhouette = data.getExtras().getByteArray("silhouette");
 
                 record.setHeight(Double.parseDouble(str_height));
                 record.setWeight(Double.parseDouble(str_weight));
+                record.setSilhouette(silhouette);
 
                 endMonitoring();
             }
