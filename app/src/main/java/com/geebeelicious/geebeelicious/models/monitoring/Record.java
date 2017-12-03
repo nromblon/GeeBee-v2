@@ -181,6 +181,11 @@ public class Record implements Parcelable {
     private int grossMotor;
 
     /**
+     * Grossmotorremakr grossMotorRemark
+     */
+    private String grossMotorRemark;
+
+    /**
      * Finemotor test result for the dominant hand. Pass = 0, Fail = 1.
      */
     private int fineMotorDominant;
@@ -248,7 +253,7 @@ public class Record implements Parcelable {
      */
     public Record(int recordID, int patient_id, String dateCreated, double height, double weight, byte[] silhouette,
                   String visualAcuityLeft, String visualAcuityRight, String colorVision, String hearingLeft,
-                  String hearingRight, int grossMotor, int fineMotorNDominant, int fineMotorDominant,
+                  String hearingRight, int grossMotor, /*String grossMotorRemark,*/ int fineMotorNDominant, int fineMotorDominant,
                   int fineMotorHold, byte[] vaccination, byte[] patientPicture, String remarksString, byte[] remarksAudio) {
         this.recordID = recordID;
         this.patient_id = patient_id;
@@ -575,6 +580,14 @@ public class Record implements Parcelable {
         this.grossMotor = grossMotor;
     }
 
+    public String getGrossMotorRemark() {
+        return grossMotorRemark;
+    }
+
+    public void setGrossMotorRemark(String grossMotorRemark) {
+        this.grossMotorRemark = grossMotorRemark;
+    }
+
     /**
      * Sets {@link #fineMotorDominant}.
      *
@@ -655,7 +668,7 @@ public class Record implements Parcelable {
                 ", height: " + height + ", weight " + weight + ", silhouette " + silhouette + ", visualAcuityLeft: " + visualAcuityLeft +
                 ", visualAcuityRight: " + visualAcuityRight + ", colorVision " + colorVision +
                 ", hearingLeft: " + hearingLeft + ", hearingRight: " + hearingRight +
-                ", grossMotor: " + grossMotor +
+                ", grossMotor: " + grossMotor + ", grossMotorRemark: " + grossMotorRemark +
                 ", fineMotorDominant: " + fineMotorDominant + ", fineMotorNonDominant: " + fineMotorNDominant +
                 ", fineMotorPen: " + fineMotorHold + ", vaccination: " + vaccination +
                 ", patientPicture: " + patientPicture + ", remarksString: " + remarksString +
@@ -689,6 +702,7 @@ public class Record implements Parcelable {
         dest.writeString(hearingLeft);
         dest.writeString(hearingRight);
         dest.writeInt(grossMotor);
+        dest.writeString(grossMotorRemark);
         dest.writeInt(fineMotorDominant);
         dest.writeInt(fineMotorNDominant);
         dest.writeInt(fineMotorHold);
@@ -716,6 +730,7 @@ public class Record implements Parcelable {
         hearingLeft = in.readString();
         hearingRight = in.readString();
         grossMotor = in.readInt();
+        grossMotorRemark = in.readString();
         fineMotorDominant = in.readInt();
         fineMotorNDominant = in.readInt();
         fineMotorHold = in.readInt();

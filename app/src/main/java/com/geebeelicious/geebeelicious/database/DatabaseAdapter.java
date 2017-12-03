@@ -12,6 +12,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.geebeelicious.geebeelicious.models.Syncable;
 import com.geebeelicious.geebeelicious.models.consultation.ChiefComplaint;
 import com.geebeelicious.geebeelicious.models.consultation.HPI;
 import com.geebeelicious.geebeelicious.models.consultation.Impressions;
@@ -31,7 +32,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -44,7 +47,9 @@ import java.util.Map;
  */
 
 public class DatabaseAdapter {
-
+    public final int PATIENTS = 0;
+    public final int RECORDS = 1;
+    public final int SCHOOL = 2;
     /**
      * Used to identify the source of a log message
      */
@@ -73,7 +78,7 @@ public class DatabaseAdapter {
     /**
      * URL of the remote database
      */
-    private static String URL_SAVE_NAME = "http://128.199.205.226/save.php";
+    private static String URL_SAVE_NAME = "http://128.199.205.226/server.php";
 
     private static Context context;
 
@@ -587,17 +592,24 @@ public class DatabaseAdapter {
             e.printStackTrace();
         }
         ArrayList<School> schools = new ArrayList<>();
-        Cursor c = getBetterDb.rawQuery("SELECT " + School.C_SCHOOL_ID + ", s." + School.C_SCHOOLNAME + ", m." +
+        Cursor c = getBetterDb.rawQuery("SELECT * FROM tbl_school", null);
+        /*Log.d(TAG, "SELECT " + School.C_SCHOOL_ID + ", s." + School.C_SCHOOLNAME + ", m." +
                 Municipality.C_NAME + " AS municipalityName FROM " + School.TABLE_NAME + " AS s, " + Municipality.TABLE_NAME +
-                " AS m WHERE s." + School.C_MUNICIPALITY + " = m." + Municipality.C_MUNICIPALITY_ID, null);
+                " AS m WHERE s." + School.C_MUNICIPALITY + " = m." + Municipality.C_MUNICIPALITY_ID);
+       Cursor c = getBetterDb.rawQuery("SELECT " + School.C_SCHOOL_ID + ", s." + School.C_SCHOOLNAME + ", m.citymunDesc  AS municipalityName FROM " + School.TABLE_NAME + " AS s, " + Municipality.TABLE_NAME +
+               " AS m WHERE s." + School.C_MUNICIPALITY + " = m.citymunCode", null);*/
+        int code =-1;
         if (c.moveToFirst()) {
             do {
+                code =c.getInt(c.getColumnIndex(School.C_MUNICIPALITY));
                 schools.add(new School(c.getInt(c.getColumnIndex(School.C_SCHOOL_ID)), c.getString(c.getColumnIndex(School.C_SCHOOLNAME)),
-                        c.getString(c.getColumnIndex("municipalityName"))));
+                        getMunicipality(code)));
+                Log.d(TAG, "getAllSchools: TRAINS PLS " + c.getInt(c.getColumnIndex(School.C_MUNICIPALITY)));
             } while (c.moveToNext());
         }
+
+        Log.d(TAG, "Schools = " + schools.size() + " c count: " + c.getCount() + " int of mun " + code);
         c.close();
-        Log.d(TAG, "Schools = " + schools.size());
         return schools;
     }
 
@@ -664,7 +676,12 @@ public class DatabaseAdapter {
 
     public ArrayList<Patient> getPatientsFromSchool(int schoolID) {
         ArrayList<Patient> patients = new ArrayList<>();
-        Cursor c = getBetterDb.query(Patient.TABLE_NAME, null, Patient.C_SCHOOL_ID + " = " + schoolID, null, null, null, Patient.C_LAST_NAME + " ASC");
+        Log.d(TAG, "School INDEX: " + schoolID);
+        ContentValues values = new ContentValues();
+        String query = "SELECT * FROM tbl_patient WHERE school_id = ?";
+        Cursor c = getBetterDb.rawQuery(query, new String[]{schoolID+""});
+
+        //Cursor c = getBetterDb.query(Patient.TABLE_NAME, null, Patient.C_SCHOOL_ID + " = " + schoolID, null, null, null, Patient.C_LAST_NAME + " ASC");
         if (c.moveToFirst()) {
             do {
                 patients.add(new Patient(c.getInt(c.getColumnIndex(Patient.C_PATIENT_ID)),
@@ -679,26 +696,47 @@ public class DatabaseAdapter {
             } while (c.moveToNext());
         }
         c.close();
+        Log.d(TAG, "Number or patients:" + patients.size() + " for school id: " + schoolID + " Where query count: " + c.getCount());
         return patients;
     }
 
-    public ArrayList<Record> getAllUnsyncedRecords() {
+    public Syncable getAllUnsyncedRows() {
+
+        /*public final int PATIENTS = 0;
+        public final int RECORDS = 1;
+        public final int SCHOOL = 2;*/
         try {
             openDatabaseForWrite();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        int[] remoteIndices;//0 - school-id   1 - patient_id
-        ArrayList<Record> unsyncedRecords = new ArrayList<>();
-        Cursor c = getBetterDb.rawQuery("SELECT * FROM tbl_record WHERE synced = 0", null);
-//        Cursor c = getBetterDb.rawQuery("SELECT * FROM tbl_record", null);
-
+        List<Patient> unsyncedPatients = new ArrayList<>();
+        Cursor c = getBetterDb.rawQuery("SELECT * FROM tbl_patient WHERE synced = 0", null);
         if (c.moveToFirst()) {
             do {
-                //remoteIndices = queryRemoteDbIndices(c.getInt(c.getColumnIndex(Record.C_PATIENT_ID)));
+                unsyncedPatients.add(new Patient(
+                        c.getInt(c.getColumnIndex(Patient.C_PATIENT_ID)),
+                        c.getString(c.getColumnIndex(Patient.C_FIRST_NAME)),
+                        c.getString(c.getColumnIndex(Patient.C_LAST_NAME)),
+                        c.getString(c.getColumnIndex(Patient.C_BIRTHDAY)),
+                        c.getInt(c.getColumnIndex(Patient.C_GENDER)),
+                        c.getInt(c.getColumnIndex(Patient.C_SCHOOL_ID)),
+                        c.getInt(c.getColumnIndex(Patient.C_HANDEDNESS)),
+                        c.getString(c.getColumnIndex(Patient.C_REMARKS_STRING)),
+                        c.getBlob(c.getColumnIndex(Patient.C_REMARKS_AUDIO))
+                        ));
+            } while (c.moveToNext());
+        }
+        c.close();
+        //unsyncedRows.get(PATIENTS) = unsyncedPatients; TODO FIX THE DAMN SYNCABLES
+
+        List<Record> unsyncedRecords = new ArrayList<>();
+        c = getBetterDb.rawQuery("SELECT * FROM tbl_record WHERE synced = 0", null);
+        if (c.moveToFirst()) {
+            do {
                 unsyncedRecords.add(new Record(
                         c.getInt(c.getColumnIndex(Record.C_RECORD_ID)),
-                        /*remoteIndices[1],*/ c.getInt(c.getColumnIndex(Record.C_PATIENT_ID)),
+                        c.getInt(c.getColumnIndex(Record.C_PATIENT_ID)),
                         c.getString(c.getColumnIndex(Record.C_DATE_CREATED)),
                         c.getDouble(c.getColumnIndex(Record.C_HEIGHT)),
                         c.getDouble(c.getColumnIndex(Record.C_WEIGHT)),
@@ -720,34 +758,51 @@ public class DatabaseAdapter {
             } while (c.moveToNext());
         }
         c.close();
-        return unsyncedRecords;
+
+        List<School> unsyncedSchools = new ArrayList<>();
+        c = getBetterDb.rawQuery("SELECT * FROM tbl_school WHERE synced = 0", null);
+        if (c.moveToFirst()) {
+            do {
+                unsyncedSchools.add(new School(
+                        c.getString(c.getColumnIndex(School.C_SCHOOLNAME)),
+                        getMunicipality(c.getInt(c.getColumnIndex(School.C_MUNICIPALITY))),
+                        c.getInt(c.getColumnIndex(School.C_MUNICIPALITY))
+                        ));
+            } while (c.moveToNext());
+        }
+        c.close();
+
+        return new Syncable(unsyncedPatients, unsyncedRecords, unsyncedSchools);
     }
 
-    public int[] queryRemoteDbIndices(int localDbPatientId) {
+   /* public int[] queryRemoteDbIndices(int localDbPatientId) {
         int localSchoolId = 0;
         final int[] remoteIndices = new int[2];//0 - school-id   1 - patient_id
         int lastSchoolId = 0;
         String patientFirstName = "";
         String patientLastName = "";
         String patientBirthday = "";
-        /*GET SCHOOL NAME*/
+        *//**//*GET SCHOOL NAME*//**//*
         //get patient school_id id first
-        Cursor c = getBetterDb.rawQuery("SELECT school_id FROM tbl_patient WHERE patient_id=?", new String[]{localDbPatientId + ""});
+        String query = "SELECT school_id FROM tbl_patient WHERE patient_id = ? ";
+        Cursor c = getBetterDb.rawQuery(query, new String[]{localDbPatientId + ""});
         if (c.getCount() > 0) {
             c.moveToFirst();
             localSchoolId = c.getInt(c.getColumnIndex(Patient.C_SCHOOL_ID));
         }
 
         //get School name to query remote database with
-        c = getBetterDb.rawQuery("SELECT * FROM tablename ORDER BY column DESC LIMIT 1;", null);
+        query = "SELECT * FROM tablename ORDER BY column DESC LIMIT 1";
+        c = getBetterDb.rawQuery(query, null);
         if (c.getCount() > 0) {
             c.moveToFirst();
             lastSchoolId = c.getInt(c.getColumnIndex(School.C_SCHOOLNAME));
         }
 
-        /*GET PATIENT UNIQUE DETAILS*/
+        *//**//*GET PATIENT UNIQUE DETAILS*//**//*
         //get patient id
-        c = getBetterDb.rawQuery("SELECT patient_id FROM tbl_school WHERE school_id=?", new String[]{localSchoolId + ""});
+        query = "SELECT patient_id FROM tbl_school WHERE school_id= ?";
+        c = getBetterDb.rawQuery(query, new String[]{localSchoolId + ""});
         if (c.getCount() > 0) {
             c.moveToFirst();
             patientFirstName = c.getString(c.getColumnIndex(Patient.C_FIRST_NAME));
@@ -800,7 +855,149 @@ public class DatabaseAdapter {
         };
         VolleySingleton.getInstance(context).addToRequestQueue(request);
         return remoteIndices;
+    }*/
+    public void insertSchool(School school){
+        int municipalityInt =getMunicipalityId(school.getMunicipality());
+        ContentValues values;
+        int row =0;
+
+
+        values = new ContentValues();
+        values.put(School.C_SCHOOLNAME, school.getSchoolName());
+        values.put(School.C_MUNICIPALITY, municipalityInt);
+        values.put("synced", 0);
+
+        row = (int) getBetterDb.insertOrThrow(School.TABLE_NAME, null, values);
+        Log.d(TAG, "insertSchool Result: " + row);
+
+    }
+
+    public  ArrayList<String> getAllRegions(){
+        ArrayList<String> regions = new ArrayList<>();
+        try {
+            openDatabaseForWrite();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Cursor c = getBetterDb.rawQuery("SELECT regDesc FROM tbl_region", null);
+        Log.d(TAG, "getAllRegions: c count: " + c.getCount());
+        if (c.moveToFirst()) {
+            do {
+                regions.add(c.getString(c.getColumnIndex("regDesc")));
+            } while (c.moveToNext());
+        }
+        c.close();
+        Log.d(TAG, "getAllRegions: array count: " +  regions.size());
+        return regions;
     }
 
 
+    public ArrayList<String> getAllProvincesFrom(int regionId) {
+        ArrayList<String> allProvinces = new ArrayList<>();
+        try {
+            openDatabaseForWrite();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String query = "SELECT provDesc FROM tbl_province WHERE regCode = ?";
+        Cursor c = getBetterDb.rawQuery(query, new String[]{regionId+""});
+        if (c.moveToFirst()) {
+            do {
+                allProvinces.add(c.getString(c.getColumnIndex("provDesc")));
+            } while (c.moveToNext());
+        }
+        c.close();
+
+        return allProvinces;
+    }
+
+    public ArrayList<String> getAllMunicipalitiesFrom(int provinceId) {
+        ArrayList<String> allMunicipalities = new ArrayList<>();
+        try {
+            openDatabaseForWrite();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String query = "SELECT citymunDesc FROM tbl_municipality WHERE provCode = ?";
+        Cursor c = getBetterDb.rawQuery(query, new String[]{provinceId+""});
+        if (c.moveToFirst()) {
+            do {
+                allMunicipalities.add(c.getString(c.getColumnIndex("citymunDesc")));
+            } while (c.moveToNext());
+        }
+        c.close();
+
+        return allMunicipalities;
+    }
+
+
+
+
+    public int getProvinceId(String provinceName){
+        int provinceId =-1;
+        String query = "SELECT provCode FROM tbl_province WHERE provDesc= ?";
+        Cursor c = getBetterDb.rawQuery(query, new String[]{provinceName});
+        if (c.getCount() > 0) {
+            c.moveToNext();
+            provinceId = c.getInt(c.getColumnIndex("provCode"));
+        }
+        return provinceId;
+    }
+
+    public int getRegionId(String regionName){
+        int regionId = -1;
+        String query = "SELECT regCode FROM tbl_region WHERE regDesc= ?";
+        Cursor c = getBetterDb.rawQuery(query, new String[]{regionName});
+        if (c.getCount() > 0) {
+            c.moveToNext();
+            regionId = c.getInt(c.getColumnIndex("regCode"));
+        }
+        return regionId;
+    }
+
+    public void removeSchool(int id){
+        getBetterDb.delete("tbl_school", "school_id" + "=" + id, null);
+    }
+
+    private String getMunicipality(int municipalityId){
+        String municipalityName = "";
+        String query = "SELECT citymunDesc FROM tbl_municipality WHERE citymunCode = ?";
+        Cursor c = getBetterDb.rawQuery(query, new String[]{municipalityId+""});
+        if (c.getCount() > 0) {
+            c.moveToNext();
+            municipalityName = c.getString(c.getColumnIndex("citymunDesc"));
+        }
+        c.close();
+        return municipalityName;
+
+    }
+
+    public int  getMunicipalityId(String municipalityName){
+
+        int municipalityId = -1;
+        String query = "SELECT citymunCode FROM tbl_municipality WHERE citymunDesc = ?";
+        Cursor c = getBetterDb.rawQuery(query, new String[]{municipalityName});
+        if (c.getCount() > 0) {
+            c.moveToNext();
+            municipalityId = c.getInt(c.getColumnIndex("citymunCode"));
+        }
+        Log.d(TAG, "getMunicipalityId: " + municipalityName + " municipalityId is: " + municipalityId);
+        c.close();
+        return municipalityId;
+
+    }
+
+    public boolean setToSynced() {
+        ContentValues values = new ContentValues();
+        values.put("synced", 1);
+
+        getBetterDb.update("tbl_school", values, "synced = 0", null);
+        getBetterDb.update("tbl_patient", values, "synced = 0", null);
+        getBetterDb.update("tbl_record", values, "synced = 0", null);
+
+
+
+
+        return true;
+    }
 }

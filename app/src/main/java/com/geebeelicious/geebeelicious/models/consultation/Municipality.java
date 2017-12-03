@@ -18,12 +18,12 @@ public class Municipality {
     /**
      * Database column name for storing the municipality ID.
      */
-    public final static String C_MUNICIPALITY_ID = "municipality_id";
+    public final static String C_MUNICIPALITY_ID = "citymunCode";
 
     /**
      * Database column name for storing municipality name.
      */
-    public final static String C_NAME = "name";
+    public final static String C_NAME = "citymunDesc";
 
     /**
      * Database column name for storing the province that

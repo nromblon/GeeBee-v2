@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
@@ -18,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -25,18 +27,25 @@ import com.android.volley.toolbox.StringRequest;
 import com.geebeelicious.geebeelicious.R;
 import com.geebeelicious.geebeelicious.adapters.PatientsAdapter;
 import com.geebeelicious.geebeelicious.database.DatabaseAdapter;
+import com.geebeelicious.geebeelicious.database.VolleySingleton;
 import com.geebeelicious.geebeelicious.interfaces.ECAActivity;
+import com.geebeelicious.geebeelicious.models.Syncable;
 import com.geebeelicious.geebeelicious.models.consultation.HPI;
 import com.geebeelicious.geebeelicious.models.consultation.Patient;
 import com.geebeelicious.geebeelicious.models.monitoring.Record;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.nio.ByteBuffer;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The PatientsListActivity serves as the activity allowing
@@ -50,7 +59,6 @@ import java.util.ArrayList;
 
 public class PatientListActivity extends ECAActivity {
     private static final String TAG = "PatientListActivity";
-    private static String URL_SAVE_NAME = "http://128.199.205.226/save.php";
     /**
      * Used as a flag whether the ECA has spoken.
      */
@@ -86,6 +94,7 @@ public class PatientListActivity extends ECAActivity {
         }
         patients = new ArrayList<>();
         patients = getBetterDb.getPatientsFromSchool(getSchoolPreferences());
+        Log.d(TAG, "getSchoolPreferences: " + getSchoolPreferences());
         getBetterDb.closeDatabase();
 
         final EditText inputSearch = (EditText) findViewById(R.id.search_input);
@@ -136,50 +145,7 @@ public class PatientListActivity extends ECAActivity {
                 finish();
             }
         });
-        //Upload all data present
-        final Button uploadAllPatientData = (Button) findViewById(R.id.UploadDataButton);
-        uploadAllPatientData.setTypeface(chalkFont);
-        uploadAllPatientData.setOnClickListener(new View.OnClickListener() {
-            Gson gson = new Gson();
 
-            @Override
-            public void onClick(View v) {
-                if (uploadAllData()) {
-                    Toast.makeText(getApplicationContext(), "Uploaded Data Successfully.", Toast.LENGTH_LONG).show();
-                } else
-                    Toast.makeText(getApplicationContext(), "Failed to Upload Data.", Toast.LENGTH_LONG).show();
-            }
-
-            private boolean uploadAllData() {
-//                for (Record record:
-//                     getBetterDb.getAllUnsyncedRecords()) {
-//
-//                }
-                String records = new GsonBuilder().create().toJson(getBetterDb.getAllUnsyncedRecords());
-                Log.d(TAG, records);
-                return true;
-            }
-
-            private boolean postRequestUpload(String jsonToSend) {
-                StringRequest request = new StringRequest(Request.Method.POST, URL_SAVE_NAME,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                if (response.equals("SUCCESS"))
-                                    Toast.makeText(PatientListActivity.this, "Successfully Uploaded.", Toast.LENGTH_SHORT).show();
-                                else
-                                    Toast.makeText(PatientListActivity.this, "Upload Failed.", Toast.LENGTH_SHORT).show();
-
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
-                return true;
-            }
-        });
 
         final Button secretButton = (Button) findViewById(R.id.secretButton);
         secretButton.setOnLongClickListener(new View.OnLongClickListener() {
@@ -208,6 +174,9 @@ public class PatientListActivity extends ECAActivity {
                 }
 
                 getBetterDb.closeDatabase();
+
+                deleteFile("SchoolIDPreferences");
+
                 return true;
             }
         });
@@ -302,10 +271,12 @@ public class PatientListActivity extends ECAActivity {
      * @return ID of the preferred school stored in device storage via Settings.
      */
     private int getSchoolPreferences() {
+        //deleteFile("SchoolIDPreferences");
         int schoolID = 1; //default schoolID
         byte[] byteArray = new byte[4];
         try {
             FileInputStream fis = openFileInput("SchoolIDPreferences");
+
             fis.read(byteArray, 0, 4);
             fis.close();
         } catch (IOException e) {
@@ -314,7 +285,7 @@ public class PatientListActivity extends ECAActivity {
 
         ByteBuffer b = ByteBuffer.wrap(byteArray);
         schoolID = b.getInt();
-
+        Log.d(TAG, "getSchoolPreferences: " + schoolID);
         return schoolID;
     }
 }

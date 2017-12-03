@@ -1,35 +1,50 @@
 package com.geebeelicious.geebeelicious.activities;
 
-import android.app.Fragment;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.geebeelicious.geebeelicious.R;
 import com.geebeelicious.geebeelicious.adapters.EyeChartsAdapter;
+import com.geebeelicious.geebeelicious.adapters.RecyclerViewClickListener;
 import com.geebeelicious.geebeelicious.adapters.SchoolsRecyclerAdapter;
 import com.geebeelicious.geebeelicious.database.DatabaseAdapter;
+import com.geebeelicious.geebeelicious.database.VolleySingleton;
+import com.geebeelicious.geebeelicious.models.Syncable;
 import com.geebeelicious.geebeelicious.models.consultation.School;
 
-import org.w3c.dom.Text;
-
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The SettingsActivity serves as the activity containing
@@ -39,8 +54,10 @@ import java.util.ArrayList;
  * @author Katrina Lacsamana
  */
 
-public class SettingsActivity extends ActionBarActivity {
+
+public class SettingsActivity extends ActionBarActivity implements RecyclerViewClickListener{
     private static final String TAG = "SettingsActivity";
+    private static final String URL_SAVE_NAME = "http://128.199.205.226/server.php";
     private DatabaseAdapter geebeeDb;
     /**
      * School chosen by the user.
@@ -65,11 +82,21 @@ public class SettingsActivity extends ActionBarActivity {
     private SchoolsRecyclerAdapter schoolsAdapter;
     private RecyclerView schoolsRecyclerView;
     private RecyclerView.LayoutManager schoolLayoutManager;
+    private Button addSchoolButton;
+    private Button removeSchoolButton;
+
+    @Override
+    public void recyclerViewListClicked(View v, int position) {
+
+    }
+
     /**
      * Initializes views and other activity objects.
      *
      * @see android.app.Activity#onCreate(Bundle)
      */
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,9 +124,9 @@ public class SettingsActivity extends ActionBarActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveSchool();
                 saveVisualAcuityChart();
-                finish();
+                if(saveSchool())
+                    finish();
             }
         });
     }
@@ -117,57 +144,332 @@ public class SettingsActivity extends ActionBarActivity {
         schools = getBetterDb.getAllSchools();
         getBetterDb.closeDatabase();
         schools = new ArrayList<>();
-        schoolsAdapter = new SchoolsRecyclerAdapter(getApplicationContext(), schools);
+        schoolsAdapter = new SchoolsRecyclerAdapter(this, schools, this);
         schoolsRecyclerView = (RecyclerView) findViewById(R.id.schoolList);
-        schools = new ArrayList<>();
         schoolLayoutManager = new LinearLayoutManager(this);
         schoolsRecyclerView.setLayoutManager(schoolLayoutManager);
-        //schoolsRecyclerView.setItemAnimator(new DefaultItemAnimator());
         schoolsRecyclerView.setAdapter(schoolsAdapter);
+        updateRecyclerView();
 
-        prepareSchoolData();
-        //schoolsAdapter.notifyDataSetChanged();
-        /*schoolsAdapter.setDropDownViewResource(R.layout.item_school_list);
-        Spinner schoolSpinner = (Spinner)findViewById(R.id.schoolSpinner);
-        schoolSpinner.setAdapter(schoolsAdapter);
-        schoolSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        addSchoolButton = (Button) findViewById(R.id.addSchoolButton);
+        removeSchoolButton = (Button) findViewById(R.id.removeSchoolButton);
+
+        addSchoolButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                chosenSchool = schools.get(position);
+            public void onClick(View v) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(SettingsActivity.this);
+                LinearLayout layout = new LinearLayout(SettingsActivity.this);
+                layout.setOrientation(LinearLayout.VERTICAL);
+
+                String regions[] = geebeeDb.getAllRegions().toArray(new String[0]);
+
+                ArrayAdapter<String> regionAdapter= new ArrayAdapter<>(SettingsActivity.this,android.R.layout.simple_spinner_item, regions);
+                regionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+//                final EditText schoolInput = new EditText(SettingsActivity.this);
+//                final EditText municipalityInput = new EditText(SettingsActivity.this);
+//                final TextView provinceText = new TextView(SettingsActivity.this);
+//                final Spinner provinceInput = new Spinner(SettingsActivity.this);
+                final TextView regionText = new TextView(SettingsActivity.this);
+                final Spinner regionInput = new Spinner(SettingsActivity.this);
+
+                regionInput.setAdapter(regionAdapter);
+
+                alertDialog.setTitle("Add School");
+
+
+
+                regionText.setText("Region");
+                regionText.setTextColor(Color.BLACK);
+
+
+
+//                layout.addView(schoolInput);
+//                layout.addView(municipalityInput);
+//                layout.addView(provinceText);
+                //layout.addView(provinceInput);
+                layout.addView(regionText);
+                layout.addView(regionInput);
+
+                alertDialog.setPositiveButton("Next", new DialogInterface.OnClickListener() {// province
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        int regionId = geebeeDb.getRegionId(regionInput.getSelectedItem().toString());
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(SettingsActivity.this);
+                        LinearLayout layout = new LinearLayout(SettingsActivity.this);
+                        layout.setOrientation(LinearLayout.VERTICAL);
+
+                        alertDialog.setTitle("Add School");
+
+                        final TextView provinceText = new TextView(SettingsActivity.this);
+                        final Spinner provinceInput = new Spinner(SettingsActivity.this);
+
+                        String provinces[] = geebeeDb.getAllProvincesFrom(regionId).toArray(new String[0]);
+                        ArrayAdapter<String> provinceAdapter= new ArrayAdapter<>(SettingsActivity.this,android.R.layout.simple_spinner_item, provinces);
+                        provinceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        provinceText.setText("Provinces");
+                        provinceText.setTextColor(Color.BLACK);
+                        provinceInput.setAdapter(provinceAdapter);
+                        layout.addView(provinceText);
+                        layout.addView(provinceInput);
+
+                        alertDialog.setPositiveButton("Next", new DialogInterface.OnClickListener() {//municipality
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                int provinceId = geebeeDb.getProvinceId(provinceInput.getSelectedItem().toString());
+                                AlertDialog.Builder alertDialog = new AlertDialog.Builder(SettingsActivity.this);
+                                LinearLayout layout = new LinearLayout(SettingsActivity.this);
+                                layout.setOrientation(LinearLayout.VERTICAL);
+
+                                alertDialog.setTitle("Add School");
+                                final TextView municipalityText = new TextView(SettingsActivity.this);
+                                final Spinner municipalityInput = new Spinner(SettingsActivity.this);
+                                String municipalities[] = geebeeDb.getAllMunicipalitiesFrom(provinceId).toArray(new String[0]);
+                                ArrayAdapter<String> municipilityAdapter= new ArrayAdapter<>(SettingsActivity.this,android.R.layout.simple_spinner_item, municipalities);
+                                municipilityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                municipalityInput.setAdapter(municipilityAdapter);
+                                municipalityText.setText("Municipality");
+                                municipalityText.setTextColor(Color.BLACK);
+                                layout.addView(municipalityText);
+                                layout.addView(municipalityInput);
+
+                                alertDialog.setPositiveButton("Next", new DialogInterface.OnClickListener() {//municipality
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(SettingsActivity.this);
+                                        LinearLayout layout = new LinearLayout(SettingsActivity.this);
+                                        alertDialog.setTitle("Add School");
+                                        layout.setOrientation(LinearLayout.VERTICAL);
+                                        final TextView schoolText = new TextView(SettingsActivity.this);
+                                        final EditText schoolInput = new EditText(SettingsActivity.this);
+                                        schoolInput.setHint("School Name");
+                                        schoolInput.setTextColor(Color.BLACK);
+                                        layout.addView(schoolText);
+                                        layout.addView(schoolInput);
+                                        alertDialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                geebeeDb.insertSchool(new School(schoolInput.getText().toString(), municipalityInput.getSelectedItem().toString()));
+                                                updateRecyclerView();
+                                            }
+                                        });
+                                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                                LinearLayout.LayoutParams.MATCH_PARENT);
+                                        layout.setLayoutParams(lp);
+                                        alertDialog.setView(layout); // uncomment this line
+                                        alertDialog.show();
+                                    }
+                                });
+                                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                                        LinearLayout.LayoutParams.MATCH_PARENT,
+                                        LinearLayout.LayoutParams.MATCH_PARENT);
+                                layout.setLayoutParams(lp);
+                                alertDialog.setView(layout); // uncomment this line
+                                alertDialog.show();
+
+                            }
+                        });
+                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.MATCH_PARENT);
+                        layout.setLayoutParams(lp);
+                        alertDialog.setView(layout); // uncomment this line
+                        alertDialog.show();
+                    }
+                });
+                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(SettingsActivity.this, "Add School Canceled", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT);
+                layout.setLayoutParams(lp);
+                alertDialog.setView(layout); // uncomment this line
+                alertDialog.show();
+            }
+        });
+        removeSchoolButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int indexToRemove =  schoolsAdapter.getSelectedIndex();
+                if(indexToRemove < 0 ){
+                    Toast.makeText(SettingsActivity.this, "Please select a School to remove first.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    geebeeDb.removeSchool(schools.get(indexToRemove).getSchoolId());
+                    updateRecyclerView();
+
+                }
+            }
+        });
+
+        //Upload all data present
+        Button uploadAllPatientData = (Button) findViewById(R.id.UploadDataButton);
+        uploadAllPatientData.setTypeface(chalkFont);
+        uploadAllPatientData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (uploadAllData()) {
+                    Toast.makeText(getApplicationContext(), "Uploaded All Data Successfully.", Toast.LENGTH_LONG).show();
+                    setSynced();
+
+
+                } else
+                    Toast.makeText(getApplicationContext(), "Failed to Upload Data.", Toast.LENGTH_LONG).show();
+            }
+             private void setSynced(){
+                 geebeeDb.setToSynced();
+             }
+
+            public  void writeToFile(String body)
+            {
+                FileOutputStream fos = null;
+
+                try {
+                    final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/folderName/" );
+
+                    if (!dir.exists())
+                    {
+                        if(!dir.mkdirs()){
+                            Log.e("ALERT","could not create the directories");
+                        }
+                    }
+
+                    final File myFile = new File(dir, "json.txt");
+
+                    if (!myFile.exists())
+                    {
+                        myFile.createNewFile();
+                    }
+
+                    fos = new FileOutputStream(myFile);
+
+                    fos.write(body.getBytes());
+                    fos.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+            private boolean uploadAllData() {
+                boolean successful = true;
+                Syncable syncableToUpload = geebeeDb.getAllUnsyncedRows();
+
+                if(syncableToUpload.getUnsyncedPatients().size() == 0 && syncableToUpload.getUnsyncedSchool().size() == 0 && syncableToUpload.getUnsyncedRecords().size() == 0)
+                    return successful;
+
+                //writeToFile(syncableToUpload.getRecordJSON());
+//                Log.d(TAG, syncableToUpload.getSchoolJSON());
+
+                if(postRequestUpload("upload-school", syncableToUpload.getSchoolJSON()))
+                    ;
+                else return false;
+
+                if(postRequestUpload("upload-patient", syncableToUpload.getPatientJSON()))
+                    ;
+                else return false;
+
+                if(postRequestUpload("upload-record", syncableToUpload.getRecordJSON()))
+                    ;
+                else return false;
+                return successful;
             }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                chosenSchool = schools.get(1);
+            private boolean postRequestUpload(final String typeRequest, final String jsonToSend) {
+                final boolean[] success = {true};
+
+                final StringRequest request = new StringRequest(Request.Method.POST, URL_SAVE_NAME,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                if (typeRequest.equals("upload-school") && response.equals("SUCCESS"))
+                                    Toast.makeText(SettingsActivity.this, "Uploaded Schools.", Toast.LENGTH_SHORT).show();
+                                else if(typeRequest.equals("upload-patient") && response.equals("SUCCESS"))
+                                    Toast.makeText(SettingsActivity.this, "Uploaded Patients.", Toast.LENGTH_SHORT).show();
+                                else if(typeRequest.equals("upload-record") && response.equals("SUCCESS"))
+                                    Toast.makeText(SettingsActivity.this, "Uploaded Records.", Toast.LENGTH_SHORT).show();
+                                else {
+                                    Toast.makeText(SettingsActivity.this, "Upload Failed.", Toast.LENGTH_SHORT).show();
+                                    success[0] = false;
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(SettingsActivity.this, "Upload Error. Bad Response.", Toast.LENGTH_SHORT).show();
+                        success[0] = false;
+                    }
+
+                }
+                ){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("request", typeRequest);
+                        params.put("json_upload", jsonToSend);
+                        return params;
+                    }
+                };
+                VolleySingleton.getInstance(SettingsActivity.this).addToRequestQueue(request);
+                return success[0];
             }
-        });*/
+        });
+
     }
 
-    private void prepareSchoolData() {
+    private void updateRecyclerView() {
+        schools.clear();
         schools.addAll(geebeeDb.getAllSchools());
         Log.d(TAG, "School Count: " +schools.size() );
-        schoolsAdapter.notifyDataSetChanged();
+        this.schoolsAdapter.notifyDataSetChanged();
     }
+
+
+
 
     /**
      * Saves schoolID of preferred school to device storage
      */
-    private void saveSchool() {
+    private boolean saveSchool() {
         ByteBuffer b = ByteBuffer.allocate(4);
-        b.putInt(chosenSchool.getSchoolId());
-        byte[] byteArray = b.array();
-
-        try {
-            FileOutputStream fos = openFileOutput("SchoolIDPreferences", Context.MODE_PRIVATE);
-            try {
-                fos.write(byteArray);
-                fos.close();
-            } catch (IOException ioe) {
-
-            }
-        } catch (FileNotFoundException fe) {
-
+        try{
+            chosenSchool = schools.get(schoolsAdapter.getSelectedIndex());
+        }catch (ArrayIndexOutOfBoundsException e){
+            Toast.makeText(this, "Error getting chosen school.", Toast.LENGTH_SHORT).show();
         }
+
+        //deleteFile("SchoolIDPreferences");
+        try {
+            if (schoolsAdapter.getSelectedIndex() < 0) {
+                throw new IndexOutOfBoundsException();
+            } else {
+                b.putInt(chosenSchool.getSchoolId());
+                byte[] byteArray = b.array();
+                Toast.makeText(this, "School Saved: " + chosenSchool.getSchoolName(), Toast.LENGTH_SHORT).show();
+                try {
+                    FileOutputStream fos = openFileOutput("SchoolIDPreferences", Context.MODE_PRIVATE);
+                    try {
+                        fos.write(byteArray);
+                        fos.close();
+                    } catch (IOException ioe) {
+                        Toast.makeText(this, "Save School Failed. Can't write file.", Toast.LENGTH_LONG).show();
+                    }
+                } catch (FileNotFoundException fe) {
+                    Toast.makeText(this, "Save School Failed. No save file found.", Toast.LENGTH_LONG).show();
+                }
+            }
+        }catch (IndexOutOfBoundsException e){
+            Toast.makeText(this, "Select a School to save.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+
     }
 
     /**
@@ -233,5 +535,7 @@ public class SettingsActivity extends ActionBarActivity {
         });
 
     }
+
+
 
 }
