@@ -544,6 +544,7 @@ public class DatabaseAdapter {
         values.put(Record.C_DATE_CREATED, record.getDateCreated());
         values.put(Record.C_HEIGHT, record.getHeight());
         values.put(Record.C_WEIGHT, record.getWeight());
+        values.put(Record.C_SILHOUETTE, record.getSilhouette());
         values.put(Record.C_VISUAL_ACUITY_LEFT, record.getVisualAcuityLeft());
         values.put(Record.C_VISUAL_ACUITY_RIGHT, record.getVisualAcuityRight());
         values.put(Record.C_COLOR_VISION, record.getColorVision());
@@ -627,7 +628,7 @@ public class DatabaseAdapter {
             do {
                 Record record = new Record(c.getInt(c.getColumnIndex(Record.C_RECORD_ID)), c.getInt(c.getColumnIndex(Record.C_PATIENT_ID)),
                         c.getString(c.getColumnIndex(Record.C_DATE_CREATED)), c.getDouble(c.getColumnIndex(Record.C_HEIGHT)),
-                        c.getDouble(c.getColumnIndex(Record.C_WEIGHT)), c.getString(c.getColumnIndex(Record.C_VISUAL_ACUITY_LEFT)),
+                        c.getDouble(c.getColumnIndex(Record.C_WEIGHT)), c.getBlob(c.getColumnIndex(Record.C_SILHOUETTE)), c.getString(c.getColumnIndex(Record.C_VISUAL_ACUITY_LEFT)),
                         c.getString(c.getColumnIndex(Record.C_VISUAL_ACUITY_RIGHT)), c.getString(c.getColumnIndex(Record.C_COLOR_VISION)),
                         c.getString(c.getColumnIndex(Record.C_HEARING_LEFT)), c.getString(c.getColumnIndex(Record.C_HEARING_RIGHT)),
                         c.getInt(c.getColumnIndex(Record.C_GROSS_MOTOR)), c.getInt(c.getColumnIndex(Record.C_FINE_MOTOR_N_DOMINANT)),
@@ -739,6 +740,7 @@ public class DatabaseAdapter {
                         c.getString(c.getColumnIndex(Record.C_DATE_CREATED)),
                         c.getDouble(c.getColumnIndex(Record.C_HEIGHT)),
                         c.getDouble(c.getColumnIndex(Record.C_WEIGHT)),
+                        c.getBlob(c.getColumnIndex(Record.C_SILHOUETTE)),
                         c.getString(c.getColumnIndex(Record.C_VISUAL_ACUITY_LEFT)),
                         c.getString(c.getColumnIndex(Record.C_VISUAL_ACUITY_RIGHT)),
                         c.getString(c.getColumnIndex(Record.C_COLOR_VISION)),

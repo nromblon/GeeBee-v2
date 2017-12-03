@@ -11,6 +11,8 @@ import android.util.Log;
  *
  * @author Mary Grace Malana
  * @since 24/03/2016
+ *
+ * edited: added silhouette
  */
 public class Record implements Parcelable {
     /**
@@ -47,6 +49,11 @@ public class Record implements Parcelable {
      * Database column name for storing {@link #weight}.
      */
     public final static String C_WEIGHT = "weight";
+
+    /**
+     * Database column name for storing {@link #silhouette}.
+     */
+    public final static String C_SILHOUETTE = "silhouette";
 
     /**
      * Database column name for storing {@link #visualAcuityLeft}.
@@ -139,6 +146,11 @@ public class Record implements Parcelable {
     private double weight;
 
     /**
+     * Silhouette of the patient.
+     */
+    private byte[] silhouette;
+
+    /**
      * Visual acuity test result for the left eye
      */
     private String visualAcuityLeft;
@@ -224,6 +236,7 @@ public class Record implements Parcelable {
      * @param dateCreated        {@link #dateCreated}
      * @param height             {@link #height}
      * @param weight             {@link #weight}
+     * @param silhouette         {@link #silhouette}
      * @param visualAcuityLeft   {@link #visualAcuityLeft}
      * @param visualAcuityRight  {@link #visualAcuityRight}
      * @param colorVision        {@link #colorVision}
@@ -238,7 +251,7 @@ public class Record implements Parcelable {
      * @param remarksString      {@link #remarksString}
      * @param remarksAudio       {@link #remarksAudio}
      */
-    public Record(int recordID, int patient_id, String dateCreated, double height, double weight,
+    public Record(int recordID, int patient_id, String dateCreated, double height, double weight, byte[] silhouette,
                   String visualAcuityLeft, String visualAcuityRight, String colorVision, String hearingLeft,
                   String hearingRight, int grossMotor, /*String grossMotorRemark,*/ int fineMotorNDominant, int fineMotorDominant,
                   int fineMotorHold, byte[] vaccination, byte[] patientPicture, String remarksString, byte[] remarksAudio) {
@@ -247,6 +260,7 @@ public class Record implements Parcelable {
         this.dateCreated = dateCreated;
         this.height = height;
         this.weight = weight;
+        this.silhouette = silhouette;
         this.visualAcuityLeft = visualAcuityLeft;
         this.visualAcuityRight = visualAcuityRight;
         this.colorVision = colorVision;
@@ -330,6 +344,15 @@ public class Record implements Parcelable {
      */
     public double getWeight() {
         return weight;
+    }
+
+    /**
+     * Gets {@link #silhouette}.
+     *
+     * @return {@link #silhouette}
+     */
+    public byte[] getSilhouette() {
+        return silhouette;
     }
 
     /**
@@ -495,6 +518,15 @@ public class Record implements Parcelable {
     }
 
     /**
+     * Sets {@link #silhouette}.
+     *
+     * @param silhouette new value
+     */
+    public void setSilhouette(byte[] silhouette) {
+        this.silhouette = silhouette;
+    }
+
+    /**
      * Sets {@link #visualAcuityLeft}.
      *
      * @param visualAcuityLeft new value
@@ -633,7 +665,7 @@ public class Record implements Parcelable {
      */
     public String getCompleteRecordInfo() {
         return "recordID: " + recordID + ", patientID: " + patient_id + ", dateCreated: " + dateCreated +
-                ", height: " + height + ", weight " + weight + ", visualAcuityLeft: " + visualAcuityLeft +
+                ", height: " + height + ", weight " + weight + ", silhouette " + silhouette + ", visualAcuityLeft: " + visualAcuityLeft +
                 ", visualAcuityRight: " + visualAcuityRight + ", colorVision " + colorVision +
                 ", hearingLeft: " + hearingLeft + ", hearingRight: " + hearingRight +
                 ", grossMotor: " + grossMotor + ", grossMotorRemark: " + grossMotorRemark +
@@ -663,6 +695,7 @@ public class Record implements Parcelable {
         dest.writeString(dateCreated);
         dest.writeDouble(height);
         dest.writeDouble(weight);
+        dest.writeByteArray(silhouette);
         dest.writeString(visualAcuityLeft);
         dest.writeString(visualAcuityRight);
         dest.writeString(colorVision);
@@ -690,6 +723,7 @@ public class Record implements Parcelable {
         dateCreated = in.readString();
         height = in.readDouble();
         weight = in.readDouble();
+        silhouette = in.createByteArray();
         visualAcuityLeft = in.readString();
         visualAcuityRight = in.readString();
         colorVision = in.readString();
