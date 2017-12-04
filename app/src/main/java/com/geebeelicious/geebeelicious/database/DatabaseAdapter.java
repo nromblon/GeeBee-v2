@@ -558,6 +558,7 @@ public class DatabaseAdapter {
         values.put(Record.C_PATIENT_PICTURE, record.getPatientPicture());
         values.put(Record.C_REMARKS_STRING, record.getRemarksString());
         values.put(Record.C_REMARKS_AUDIO, record.getRemarksAudio());
+        values.put("synced", 0);
 
         row = (int) getBetterDb.insert(Record.TABLE_NAME, null, values);
         Log.d(TAG, "insertRecord Result: " + row);
