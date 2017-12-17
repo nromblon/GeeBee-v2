@@ -23,8 +23,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.geebeelicious.geebeelicious.R;
@@ -382,19 +388,17 @@ public class SettingsActivity extends ActionBarActivity implements RecyclerViewC
 //                Log.d(TAG, syncableToUpload.getSchoolJSON());
 
                 if(postRequestUpload("upload-school", syncableToUpload.getSchoolJSON()))
-                    getBetterDb.setSchoolSynced();
+                   ;
                 else return false;
 
                 if(postRequestUpload("upload-patient", syncableToUpload.getPatientJSON()))
-                    getBetterDb.setPatientSynced();
+                    ;
                 else return false;
-
-                if(postRequestUpload("upload-record", syncableToUpload.getRecordJSON()))
-                    getBetterDb.setRecordSynced();
-                else return false;
-
                 if(postRequestUpload("upload-hpi", syncableToUpload.getHPIJSON()))
-                    getBetterDb.setHPISynced();
+                    ;
+                else return false;
+                if(postRequestUpload("upload-record", syncableToUpload.getRecordJSON()))
+                    Log.println(Log.ASSERT,TAG,syncableToUpload.getRecordJSON());
                 else return false;
                 return successful;
             }
@@ -406,23 +410,44 @@ public class SettingsActivity extends ActionBarActivity implements RecyclerViewC
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                if (typeRequest.equals("upload-school") && response.equals("SUCCESS-SCHOOL"))
+                                if (typeRequest.equals("upload-school") && response.equals("SUCCESS-SCHOOL")) {
+                                    getBetterDb.setSchoolSynced();
                                     Toast.makeText(SettingsActivity.this, "Uploaded Schools.", Toast.LENGTH_SHORT).show();
-                                else if(typeRequest.equals("upload-patient") && response.equals("SUCCESS-PATIENT"))
+                                }
+                                else if(typeRequest.equals("upload-patient") && response.equals("SUCCESS-PATIENT")) {
+                                    getBetterDb.setPatientSynced();
                                     Toast.makeText(SettingsActivity.this, "Uploaded Patients.", Toast.LENGTH_SHORT).show();
-                                else if(typeRequest.equals("upload-record") && response.equals("SUCCESS-RECORD"))
+                                }
+                                else if(typeRequest.equals("upload-record") && response.equals("SUCCESS-RECORD")) {
+                                    getBetterDb.setRecordSynced();
                                     Toast.makeText(SettingsActivity.this, "Uploaded Records.", Toast.LENGTH_SHORT).show();
-                                else if(typeRequest.equals("upload-hpi") && response.equals("SUCCESS-HPI"))
+                                }
+                                else if(typeRequest.equals("upload-hpi") && response.equals("SUCCESS-HPI")) {
+                                    getBetterDb.setHPISynced();
                                     Toast.makeText(SettingsActivity.this, "Uploaded HPI.", Toast.LENGTH_SHORT).show();
+                                }
                                 else {
                                     Toast.makeText(SettingsActivity.this, "Upload Failed.", Toast.LENGTH_SHORT).show();
+                                    //return;
                                     success[0] = false;
                                 }
                             }
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(SettingsActivity.this, "Upload Error. Bad Response.", Toast.LENGTH_SHORT).show();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                            Toast.makeText(SettingsActivity.this,
+                                    TAG,
+                                    Toast.LENGTH_LONG).show();
+                        } else if (error instanceof AuthFailureError) {
+                            //TODO
+                        } else if (error instanceof ServerError) {
+                            //TODO
+                        } else if (error instanceof NetworkError) {
+                            //TODO
+                        } else if (error instanceof ParseError) {
+                            //TODO
+                        }
                         success[0] = false;
                     }
 
@@ -436,10 +461,12 @@ public class SettingsActivity extends ActionBarActivity implements RecyclerViewC
                         return params;
                     }
                 };
+                request.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 VolleySingleton.getInstance(SettingsActivity.this).addToRequestQueue(request);
                 return success[0];
             }
         });
+
 
     }
 
