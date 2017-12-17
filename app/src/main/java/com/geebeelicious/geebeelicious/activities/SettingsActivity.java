@@ -135,7 +135,7 @@ public class SettingsActivity extends ActionBarActivity implements RecyclerViewC
      * Adds option to select a school to the Settings screen.
      */
     private void addChooseSchoolSetting() {
-        DatabaseAdapter getBetterDb = new DatabaseAdapter(SettingsActivity.this);
+        final DatabaseAdapter getBetterDb = new DatabaseAdapter(SettingsActivity.this);
         try {
             getBetterDb.openDatabaseForRead();
         } catch (SQLException e) {
@@ -313,19 +313,32 @@ public class SettingsActivity extends ActionBarActivity implements RecyclerViewC
         Button uploadAllPatientData = (Button) findViewById(R.id.UploadDataButton);
         uploadAllPatientData.setTypeface(chalkFont);
         uploadAllPatientData.setOnClickListener(new View.OnClickListener() {
+            public boolean isConnected()
+            {
+                String command = "ping -c 1 google.com";
+                try {
+                    return (Runtime.getRuntime().exec (command).waitFor() == 0);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    return  false;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return  false;
+                }
+            }
             @Override
             public void onClick(View v) {
-                if (uploadAllData()) {
+                if (uploadAllData() && isConnected()) {
                     Toast.makeText(getApplicationContext(), "Uploaded All Data Successfully.", Toast.LENGTH_LONG).show();
-                    setSynced();
+                    //setSynced();
 
 
                 } else
                     Toast.makeText(getApplicationContext(), "Failed to Upload Data.", Toast.LENGTH_LONG).show();
             }
-             private void setSynced(){
-                 geebeeDb.setToSynced();
-             }
+//             private void setSynced(){
+//                 geebeeDb.setToSynced();
+//             }
 
             public  void writeToFile(String body)
             {
@@ -361,22 +374,27 @@ public class SettingsActivity extends ActionBarActivity implements RecyclerViewC
                 boolean successful = true;
                 Syncable syncableToUpload = geebeeDb.getAllUnsyncedRows();
 
-                if(syncableToUpload.getUnsyncedPatients().size() == 0 && syncableToUpload.getUnsyncedSchool().size() == 0 && syncableToUpload.getUnsyncedRecords().size() == 0)
+                if(syncableToUpload.getUnsyncedPatients().size() == 0 && syncableToUpload.getUnsyncedSchool().size() == 0
+                        && syncableToUpload.getUnsyncedRecords().size() == 0 && syncableToUpload.getUnsyncedHPI().size() == 0 )
                     return successful;
 
                 //writeToFile(syncableToUpload.getRecordJSON());
 //                Log.d(TAG, syncableToUpload.getSchoolJSON());
 
                 if(postRequestUpload("upload-school", syncableToUpload.getSchoolJSON()))
-                    ;
+                    getBetterDb.setSchoolSynced();
                 else return false;
 
                 if(postRequestUpload("upload-patient", syncableToUpload.getPatientJSON()))
-                    ;
+                    getBetterDb.setPatientSynced();
                 else return false;
 
                 if(postRequestUpload("upload-record", syncableToUpload.getRecordJSON()))
-                    ;
+                    getBetterDb.setRecordSynced();
+                else return false;
+
+                if(postRequestUpload("upload-hpi", syncableToUpload.getHPIJSON()))
+                    getBetterDb.setHPISynced();
                 else return false;
                 return successful;
             }
@@ -388,12 +406,14 @@ public class SettingsActivity extends ActionBarActivity implements RecyclerViewC
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                if (typeRequest.equals("upload-school") && response.equals("SUCCESS"))
+                                if (typeRequest.equals("upload-school") && response.equals("SUCCESS-SCHOOL"))
                                     Toast.makeText(SettingsActivity.this, "Uploaded Schools.", Toast.LENGTH_SHORT).show();
-                                else if(typeRequest.equals("upload-patient") && response.equals("SUCCESS"))
+                                else if(typeRequest.equals("upload-patient") && response.equals("SUCCESS-PATIENT"))
                                     Toast.makeText(SettingsActivity.this, "Uploaded Patients.", Toast.LENGTH_SHORT).show();
-                                else if(typeRequest.equals("upload-record") && response.equals("SUCCESS"))
+                                else if(typeRequest.equals("upload-record") && response.equals("SUCCESS-RECORD"))
                                     Toast.makeText(SettingsActivity.this, "Uploaded Records.", Toast.LENGTH_SHORT).show();
+                                else if(typeRequest.equals("upload-hpi") && response.equals("SUCCESS-HPI"))
+                                    Toast.makeText(SettingsActivity.this, "Uploaded HPI.", Toast.LENGTH_SHORT).show();
                                 else {
                                     Toast.makeText(SettingsActivity.this, "Upload Failed.", Toast.LENGTH_SHORT).show();
                                     success[0] = false;

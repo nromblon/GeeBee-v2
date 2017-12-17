@@ -1,5 +1,8 @@
 package com.geebeelicious.geebeelicious.models;
 
+import android.util.Log;
+
+import com.geebeelicious.geebeelicious.models.consultation.HPI;
 import com.geebeelicious.geebeelicious.models.consultation.Patient;
 import com.geebeelicious.geebeelicious.models.consultation.School;
 import com.geebeelicious.geebeelicious.models.monitoring.Record;
@@ -16,12 +19,14 @@ public class Syncable {
     List<Patient> unsyncedPatients = new ArrayList<>();
     List<Record> unsyncedRecords = new ArrayList<>();
     List<School> unsyncedSchool = new ArrayList<>();
+    List<HPI> unsyncedHPI = new ArrayList<>();
     //List<Municipality> unsyncedSchool = new ArrayList<>();
 
-    public Syncable(List<Patient> unsyncedPatients, List<Record> unsyncedRecords, List<School> unsyncedSchool){
+    public Syncable(List<Patient> unsyncedPatients, List<Record> unsyncedRecords, List<School> unsyncedSchool, List<HPI> unsyncedHPI){
         this.unsyncedPatients = unsyncedPatients;
         this.unsyncedRecords = unsyncedRecords;
         this.unsyncedSchool = unsyncedSchool;
+        this.unsyncedHPI = unsyncedHPI;
     }
 
     public List<Patient> getUnsyncedPatients() {
@@ -48,11 +53,19 @@ public class Syncable {
         this.unsyncedSchool = unsyncedSchool;
     }
 
-    public String getPatientJSON(){ return new GsonBuilder().create().toJson(this.unsyncedPatients); }
+    public List<HPI> getUnsyncedHPI() {
+        return unsyncedHPI;
+    }
+
+    public String getPatientJSON(){ return new GsonBuilder().serializeNulls().create().toJson(this.unsyncedPatients); }
     public String getRecordJSON(){
-        return new GsonBuilder().create().toJson(this.unsyncedRecords);
+        return new GsonBuilder().serializeNulls().create().toJson(this.unsyncedRecords);
     }
     public String getSchoolJSON(){
-        return new GsonBuilder().create().toJson(this.unsyncedSchool);
+        return new GsonBuilder().serializeNulls().create().toJson(this.unsyncedSchool);
+    }
+
+    public String getHPIJSON(){
+        return new GsonBuilder().serializeNulls().create().toJson(this.unsyncedHPI);
     }
 }

@@ -526,6 +526,8 @@ public class DatabaseAdapter {
         values.put(Patient.C_HANDEDNESS, patient.getHandedness());
         values.put(Patient.C_REMARKS_STRING, patient.getRemarksString());
         values.put(Patient.C_REMARKS_AUDIO, patient.getRemarksAudio());
+        values.put("synced", 0);
+
 
         row = (int) getBetterDb.insert(Patient.TABLE_NAME, null, values);
         Log.d(TAG, "insertPatient Result: " + row);
@@ -773,7 +775,20 @@ public class DatabaseAdapter {
         }
         c.close();
 
-        return new Syncable(unsyncedPatients, unsyncedRecords, unsyncedSchools);
+        List<HPI> unsycnedHPI = new ArrayList<>();
+        c = getBetterDb.rawQuery("SELECT * FROM tbl_hpi WHERE synced = 0", null);
+        if (c.moveToFirst()) {
+            do {
+                unsycnedHPI.add(new HPI(
+                        c.getInt(c.getColumnIndex(HPI.C_PATIENT_ID)),
+                        c.getString(c.getColumnIndex(HPI.C_HPI_TEXT)),
+                        c.getString(c.getColumnIndex(HPI.C_DATE_CREATED))
+                ));
+            } while (c.moveToNext());
+        }
+        c.close();
+
+        return new Syncable(unsyncedPatients, unsyncedRecords, unsyncedSchools, unsycnedHPI);
     }
 
    /* public int[] queryRemoteDbIndices(int localDbPatientId) {
@@ -974,7 +989,11 @@ public class DatabaseAdapter {
     }
 
     public int  getMunicipalityId(String municipalityName){
-
+        try {
+            openDatabaseForWrite();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         int municipalityId = -1;
         String query = "SELECT citymunCode FROM tbl_municipality WHERE citymunDesc = ?";
         Cursor c = getBetterDb.rawQuery(query, new String[]{municipalityName});
@@ -987,18 +1006,46 @@ public class DatabaseAdapter {
         return municipalityId;
 
     }
-
-    public boolean setToSynced() {
+    public boolean setSchoolSynced(){
+        try {
+            openDatabaseForWrite();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         ContentValues values = new ContentValues();
         values.put("synced", 1);
-
         getBetterDb.update("tbl_school", values, "synced = 0", null);
-        getBetterDb.update("tbl_patient", values, "synced = 0", null);
-        getBetterDb.update("tbl_record", values, "synced = 0", null);
-
-
-
-
         return true;
     }
+    public boolean setPatientSynced(){
+        try {
+            openDatabaseForWrite();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ContentValues values = new ContentValues();
+        values.put("synced", 1);
+        getBetterDb.update("tbl_patient", values, "synced = 0", null);
+        return true;
+    }
+    public boolean setRecordSynced(){
+        try {
+            openDatabaseForWrite();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ContentValues values = new ContentValues();
+        values.put("synced", 1);
+        getBetterDb.update("tbl_record", values, "synced = 0", null);
+        return true;
+    }
+    public boolean setHPISynced(){
+        ContentValues values = new ContentValues();
+        values.put("synced", 1);
+        getBetterDb.update("tbl_hpi", values, "synced = 0", null);
+        return true;
+    }
+
+
+
 }

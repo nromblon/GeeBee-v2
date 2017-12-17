@@ -665,8 +665,8 @@ public class Record implements Parcelable {
      */
     public String getCompleteRecordInfo() {
         return "recordID: " + recordID + ", patientID: " + patient_id + ", dateCreated: " + dateCreated +
-                ", height: " + height + ", weight " + weight + ", silhouette " + silhouette + ", visualAcuityLeft: " + visualAcuityLeft +
-                ", visualAcuityRight: " + visualAcuityRight + ", colorVision " + colorVision +
+                ", height: " + height + ", weight: " + weight + ", silhouette: " + silhouette + ", visualAcuityLeft: " + visualAcuityLeft +
+                ", visualAcuityRight: " + visualAcuityRight + ", colorVision: " + colorVision +
                 ", hearingLeft: " + hearingLeft + ", hearingRight: " + hearingRight +
                 ", grossMotor: " + grossMotor + ", grossMotorRemark: " + grossMotorRemark +
                 ", fineMotorDominant: " + fineMotorDominant + ", fineMotorNonDominant: " + fineMotorNDominant +
