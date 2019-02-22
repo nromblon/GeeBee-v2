@@ -101,6 +101,7 @@ public class ECAFragment extends Fragment {
 
 
         //ECA integration
+        /*
         VHMobileMain.setupVHMobile();
 
         Log.d(TAG, "The onCreate() event");
@@ -108,7 +109,7 @@ public class ECAFragment extends Fragment {
         vhmain = new VHMobileMain(activity);
         vhmain.init();
         _VHview = (VHMobileSurfaceView) view.findViewById(R.id.vhview);
-
+        */
         return view;
     }
 
@@ -159,8 +160,10 @@ public class ECAFragment extends Fragment {
          * The activity must call the GL surface view's
          * onResume() on activity onResume().
          */
+        /*
         if (_VHview != null)
             _VHview.onResume();
+        */
         Log.d(TAG, "The onResume() event");
 
     }
@@ -177,8 +180,10 @@ public class ECAFragment extends Fragment {
          * The activity must call the GL surface view's
          * onResume() on activity onResume().
          */
+        /*
         if (_VHview != null)
             _VHview.onPause();
+        */
         Log.d(TAG, "The onPause() event");
 
     }
@@ -215,7 +220,7 @@ public class ECAFragment extends Fragment {
         ecaString = sentence;
 
         Log.d(TAG, "ECA speaks: " + sentence);
-        VHMobileLib.executeSB("saySomething(characterName, \"" + sentence + "\")");
+        //VHMobileLib.executeSB("saySomething(characterName, \"" + sentence + "\")");
     }
 
     /**
@@ -225,7 +230,7 @@ public class ECAFragment extends Fragment {
      */
     public void sendToECAToSPeak(int resID) {
         String sentence = getString(resID);
-        sendToECAToSpeak(sentence);
+        //sendToECAToSpeak(sentence);
     }
 
     /**
@@ -239,11 +244,11 @@ public class ECAFragment extends Fragment {
         switch (emotion) {
             case HAPPY:
                 Log.d(TAG, "setToHappy");
-                VHMobileLib.executeSB("setToHappy(characterName, " + i + ")");
+                //VHMobileLib.executeSB("setToHappy(characterName, " + i + ")");
                 break;
             case CONCERN:
                 Log.d(TAG, "setToConcern");
-                VHMobileLib.executeSB("setToConcern(characterName, " + i + ")");
+                //VHMobileLib.executeSB("setToConcern(characterName, " + i + ")");
                 break;
         }
     }
