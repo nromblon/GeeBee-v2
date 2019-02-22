@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.geebeelicious.geebeelicious.R;
@@ -34,10 +35,10 @@ public class MainActivity extends ECAActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button startButton = (Button) findViewById(R.id.startButton);
-        Typeface chalkFont = Typeface.createFromAsset(getAssets(), "fonts/DJBChalkItUp.ttf");
-        startButton.setTypeface(chalkFont);
+        setContentView(R.layout.activity_main_re);
+        ImageButton startButton = (ImageButton) findViewById(R.id.startButton_re);
+//        Typeface chalkFont = Typeface.createFromAsset(getAssets(), "fonts/DJBChalkItUp.ttf");
+//        startButton.setTypeface(chalkFont);
         ImageView settingsButton = (ImageView) findViewById(R.id.settingsButton);
 
         integrateECA();

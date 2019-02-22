@@ -22,7 +22,7 @@
         android:layout_toEndOf="@+id/placeholderECA"
         android:padding="30dp"
         android:layout_centerVertical="true"
-        android:id="@+id/relativeLayout">
+        android:id="@+id/sideBar">
 
         <ImageView
             android:layout_width="match_parent"
@@ -51,6 +51,6 @@
         android:id="@+id/settingsButton"
         android:src="@drawable/settings_button"
         android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/relativeLayout" />
+        android:layout_alignEnd="@+id/sideBar" />
 
 </RelativeLayout>

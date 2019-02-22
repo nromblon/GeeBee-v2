@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:keepScreenOn="true"
+    style="@style/DefaultBackground"
+    tools:context=".activities.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/placeholderECA"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="80" />
+
+    <LinearLayout
+        android:id="@+id/sideBar"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/placeholderECA"
+        android:layout_weight="40"
+        android:gravity="top|center"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <ImageView
+            android:id="@+id/settingsButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignEnd="@+id/sideBar"
+            android:layout_alignParentTop="true"
+            android:layout_weight="20"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="fitEnd"
+            android:src="@drawable/settings_button" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="60"
+            android:minHeight="300dp"
+            android:src="@drawable/logo_main_activity" />
+
+        <ImageButton
+            android:id="@+id/startButton_re"
+            style="@style/DefaultButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="30"
+            android:scaleType="fitCenter"
+            android:src="@drawable/letsgo" />
+
+    </LinearLayout>
+
+</LinearLayout>
