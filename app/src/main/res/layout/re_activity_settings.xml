@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/DefaultBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:orientation="horizontal"
+    android:padding="20dp"
+    android:weightSum="100"
+    tools:context=".activities.SettingsActivity">
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_weight="50"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/schoolList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginEnd="13dp"
+            android:layout_weight=".8"
+            android:visibility="visible">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/addSchoolButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:padding="20dp"
+                android:text="@string/add_school"
+                android:textSize="30sp"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/removeSchoolButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:padding="20dp"
+                android:text="@string/remove_school"
+                android:textSize="30sp"
+                android:visibility="visible" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Space
+        android:layout_height="match_parent"
+        android:layout_weight="5" />
+
+    <TableLayout
+        android:layout_height="match_parent"
+        android:layout_weight="45">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/schoolnameTV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity=""
+                android:layout_weight=".8"
+                android:text="@string/school_name"
+                android:textSize="30sp"
+                android:visibility="visible" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/visualacuitychartNameTV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:layout_weight=".8"
+                android:text="@string/visualacuity_chart_name"
+                android:textSize="30sp"
+                android:visibility="visible" />
+
+            <Spinner
+                android:id="@+id/visualacuitychartSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight=".8"
+                android:visibility="visible"></Spinner>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/calibrateHearingTV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight=".8"
+                android:text="@string/calibrate_settings"
+                android:textSize="30sp"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/calibrateHearingTestButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".8"
+                android:padding="20dp"
+                android:text="@string/calibrate_button"
+                android:textSize="20sp"
+                android:visibility="visible" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/saveSettingsButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_weight=".8"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="@string/save"
+                android:textSize="20sp"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/UploadDataButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/saveSettingsButton"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="17dp"
+                android:layout_weight=".8"
+                android:enabled="true"
+                android:padding="15dp"
+                android:text="Sync Data"
+                android:textSize="35sp"
+                android:visibility="visible" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
