@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:animationCache="false"
     android:orientation="vertical"
-    android:background="#1B5E20">
+    android:paddingLeft="@dimen/_4ssp">
 
     <TextView
-        android:textColor="#FFFFFF"
         android:id="@+id/school_name_list"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
         android:singleLine="true"
-        android:padding="5dp" />
+        android:textColor="@color/abc_search_url_text_normal"
+        android:textSize="@dimen/_16ssp"
+        tools:text="test123512321321" />
 
     <TextView
-        android:textColor="#FFFFFF"
         android:id="@+id/school_municipality_list"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
         android:singleLine="true"
-        android:padding="5dp" />
+        android:textColor="@color/black"
+        android:textSize="@dimen/_8ssp"
+        tools:text="test2345" />
 
 </LinearLayout>

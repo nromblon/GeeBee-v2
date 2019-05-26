@@ -1,134 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/DefaultBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
     android:orientation="horizontal"
-    android:padding="20dp"
+    android:padding="50dp"
     android:weightSum="100"
     tools:context=".activities.SettingsActivity">
 
     <LinearLayout
         android:layout_height="match_parent"
         android:layout_weight="50"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/schoolList"
+        <TextView
+            android:id="@+id/schoolnameTV"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginEnd="13dp"
-            android:layout_weight=".8"
-            android:visibility="visible">
-
-        </android.support.v7.widget.RecyclerView>
+            android:layout_gravity=""
+            android:layout_weight="10"
+            android:text="@string/school_name"
+            android:textSize="@dimen/_18ssp"
+            android:visibility="visible" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_weight="90"
+            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/addSchoolButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:padding="20dp"
-                android:text="@string/add_school"
-                android:textSize="30sp"
-                android:visibility="visible" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/schoolList"
+                android:layout_height="match_parent"
+                android:layout_weight=".8"
+                android:visibility="visible"
+                tools:listitem="@layout/item_school_list">
 
-            <Button
-                android:id="@+id/removeSchoolButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:padding="20dp"
-                android:text="@string/remove_school"
-                android:textSize="30sp"
-                android:visibility="visible" />
+            </android.support.v7.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_weight=".2"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/AddRelativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_weight="0.1">
+
+                    <ImageView
+                        android:id="@+id/addIcoColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingTop="1px"
+                        android:src="@drawable/img_scroll_greenhighlight" />
+
+                    <ImageView
+                        android:id="@+id/addIco"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingTop="1px"
+                        android:src="@drawable/img_sidebar_add_data" />
+
+                    <Button
+                        android:id="@+id/addSchoolButton"
+                        style="@style/DefaultButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0"
+                        android:background="@android:color/transparent"
+                        android:padding="20dp"
+                        android:paddingTop="1px"
+                        android:text="@string/add_school"
+                        android:textSize="30sp"
+                        android:visibility="visible" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/SubtractRelativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_weight="0.1">
+
+                    <ImageView
+                        android:id="@+id/subtractIcoColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingTop="1px"
+                        android:src="@drawable/img_scroll_greenhighlight" />
+
+                    <ImageView
+                        android:id="@+id/subtractIco"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingTop="1px"
+                        android:src="@drawable/img_sidebar_subtract_data" />
+
+                    <Button
+                        android:id="@+id/removeSchoolButton"
+                        style="@style/DefaultButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0"
+                        android:background="@android:color/transparent"
+                        android:padding="20dp"
+                        android:paddingTop="1px"
+                        android:textSize="30sp"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/subtractIcoBorder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="1px"
+                        android:layout_centerHorizontal="true"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/img_sidebar_spacing_gray"
+                        android:paddingBottom="1px"
+                        android:src="@drawable/img_sidebar_spacing_gray" />
+                </RelativeLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_weight="0.8" />
+
+            </LinearLayout>
+
         </LinearLayout>
-
     </LinearLayout>
 
     <Space
         android:layout_height="match_parent"
         android:layout_weight="5" />
 
-    <TableLayout
+    <LinearLayout
         android:layout_height="match_parent"
-        android:layout_weight="45">
+        android:layout_weight="45"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/_10ssp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="60"
+            android:orientation="vertical">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="50"
+                android:gravity="top"
+                android:weightSum="100">
+
+                <TextView
+                    android:id="@+id/visualacuitychartNameTV"
+                    android:layout_height="match_parent"
+
+                    android:layout_weight="50"
+                    android:gravity="center_vertical"
+                    android:text="@string/visualacuity_chart_name"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="visible" />
+
+                <Spinner
+                    android:id="@+id/visualacuitychartSpinner"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center"
+                    android:layout_weight="50"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="visible"></Spinner>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_weight="50"
+                android:gravity="top"
+                android:weightSum="100">
+
+                <TextView
+                    android:id="@+id/calibrateHearingTV"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_weight="50"
+                    android:gravity="center_vertical"
+                    android:text="@string/calibrate_settings"
+                    android:textAlignment="gravity"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/calibrateHearingTestButton"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center"
+                    android:layout_weight="50"
+                    android:text="@string/calibrate_button"
+                    android:textSize="@dimen/_15ssp"
+                    android:visibility="visible" />
+
+            </TableRow>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_weight="10" />
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/schoolnameTV"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity=""
-                android:layout_weight=".8"
-                android:text="@string/school_name"
-                android:textSize="30sp"
-                android:visibility="visible" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/visualacuitychartNameTV"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                android:layout_weight=".8"
-                android:text="@string/visualacuity_chart_name"
-                android:textSize="30sp"
-                android:visibility="visible" />
-
-            <Spinner
-                android:id="@+id/visualacuitychartSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight=".8"
-                android:visibility="visible"></Spinner>
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/calibrateHearingTV"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:layout_weight=".8"
-                android:text="@string/calibrate_settings"
-                android:textSize="30sp"
-                android:visibility="visible" />
-
-            <Button
-                android:id="@+id/calibrateHearingTestButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight=".8"
-                android:padding="20dp"
-                android:text="@string/calibrate_button"
-                android:textSize="20sp"
-                android:visibility="visible" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_weight="30"
+            android:gravity="bottom">
 
             <Button
                 android:id="@+id/saveSettingsButton"
@@ -138,9 +217,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_weight=".8"
                 android:gravity="center"
-                android:padding="20dp"
                 android:text="@string/save"
-                android:textSize="20sp"
+                android:textSize="@dimen/_15ssp"
                 android:visibility="visible" />
 
             <Button
@@ -149,14 +227,13 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/saveSettingsButton"
                 android:layout_alignParentStart="true"
-                android:layout_marginBottom="17dp"
                 android:layout_weight=".8"
                 android:enabled="true"
-                android:padding="15dp"
                 android:text="Sync Data"
-                android:textSize="35sp"
+                android:textSize="@dimen/_15ssp"
                 android:visibility="visible" />
         </TableRow>
-    </TableLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

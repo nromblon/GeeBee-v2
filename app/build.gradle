@@ -43,4 +43,5 @@ dependencies {
     compile 'com.android.support:support-v4:19.1.0'
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'com.intuit.ssp:ssp-android:1.0.6'
 }

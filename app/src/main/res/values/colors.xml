@@ -3,4 +3,152 @@
     <color name="pressed_color">#66FFFFFF</color>
     <color name="selected_color">#6600CC00</color>
     <color name="focused_color">#66006600</color>
+
+    <color name="colorPrimary">#3f51b5</color>
+    <color name="colorPrimaryDark">#004D40</color>
+    <color name="colorAccent">#ff4081</color>
+    <!-- SeeBee specified colors -->
+    <color name="white">#ffffff</color>
+    <color name="yellow">#ffff33</color>
+    <color name="grey">#cdcdcd</color>
+    <color name="green">#06b5a6</color>
+    <color name="black">#000000</color>
+    <color name="sidebarText">#ffffff</color>
+    <color name="lightGrey">#ebebeb</color>
+    <color name="greenHighlight">#00c7a9</color>
+    <color name="transparentHighlight">#9e00c7a9</color>
+    <color name="transparentBlack">#c8000000</color>
+    <color name="transparentSidebarExtend">#c821c700</color>
+    <color name="brightGreenHighlight">#21c700</color>
+
+
+    <color name="obese">#fd3600</color>
+    <color name="overweight">#fd8b00</color>
+    <color name="normal">#74e304</color>
+    <color name="underweight">#afda01</color>
+    <color name="thinness">#e5f500</color>
+    <color name="severe_thinness">#fdf900</color>
+
+    <color name="view_patient_name_color_female">#ea3571</color>
+    <color name="view_patient_name_color_male">#3348d2</color>
+
+    <color name="view_patient_name_color_female_dark">#731a37</color>
+    <color name="view_patient_name_color_male_dark">#182269</color>
+
+    <color name="dataset_list_visualize_color">#00c7a9</color>
+    <color name="dataset_list_download_color">#cdcdcd</color>
+
+    <!-- Default Colors -->
+    <color name="theme_menu_button">#00c7a9</color>
+    <color name="theme_back_button">#00c7a9</color>
+
+    <color name="theme_sidebar_dark_button">#004D40</color>
+
+    <color name="theme_sidebar_extend_item0">#64DD17</color>
+    <color name="theme_sidebar_extend_item1">#76FF03</color>
+    <color name="theme_sidebar_extend_item2">#B2FF59</color>
+    <color name="theme_sidebar_extend_item3">#CCFF90</color>
+
+    <color name="theme_sidebar_extend_noitem">#F4FF81</color>
+
+    <!-- COLOR THEMES (In items, Light to Dark : No item, 3, 2, 1, 0) -->
+    <!-- Teal50 Theme Colors -->
+    <color name="theme_teal50_menu_button">#00c7a9</color>
+
+    <color name="theme_teal50_sidebar_extend_item0">#00BFA5</color>
+    <color name="theme_teal50_sidebar_extend_item1">#1DE9B6</color>
+    <color name="theme_teal50_sidebar_extend_item2">#64FFDA</color>
+    <color name="theme_teal50_sidebar_extend_item3">#A7FFEB</color>
+
+    <color name="theme_teal50_sidebar_extend_noitem">#cdfff4</color>
+
+    <!-- LightGreen50 Theme Colors -->
+    <color name="theme_lightgreen50_sidebar_extend_item0">#64DD17</color>
+    <color name="theme_lightgreen50_sidebar_extend_item1">#76FF03</color>
+    <color name="theme_lightgreen50_sidebar_extend_item2">#B2FF59</color>
+    <color name="theme_lightgreen50_sidebar_extend_item3">#CCFF90</color>
+
+    <color name="theme_lightgreen50_sidebar_extend_noitem">#dcedc8</color>
+
+
+    <!-- Orange50 Theme Colors -->
+    <color name="theme_orange50_sidebar_extend_item0">#FF6D00</color>
+    <color name="theme_orange50_sidebar_extend_item1">#FF9100</color>
+    <color name="theme_orange50_sidebar_extend_item2">#FFAB40</color>
+    <color name="theme_orange50_sidebar_extend_item3">#FFD180</color>
+
+    <color name="theme_orange50_sidebar_extend_noitem">#FFE0B2</color>
+
+    <!-- Amber50 Theme Colors -->
+    <color name="theme_amber50_sidebar_extend_item0">#FFAB00</color>
+    <color name="theme_amber50_sidebar_extend_item1">#FFC400</color>
+    <color name="theme_amber50_sidebar_extend_item2">#FFD740</color>
+    <color name="theme_amber50_sidebar_extend_item3">#FFE57F</color>
+
+    <color name="theme_amber50_sidebar_extend_noitem">#ffecb3</color>
+
+    <!-- Cyan50 Theme Colors -->
+    <color name="theme_cyan50_sidebar_extend_item0">#00B8D4</color>
+    <color name="theme_cyan50_sidebar_extend_item1">#00E5FF</color>
+    <color name="theme_cyan50_sidebar_extend_item2">#18FFFF</color>
+    <color name="theme_cyan50_sidebar_extend_item3">#84FFFF</color>
+
+    <color name="theme_cyan50_sidebar_extend_noitem">#ccffff</color>
+
+    <!-- Purple50 Theme Colors -->
+    <color name="theme_purple50_sidebar_extend_item0">#AA00FF</color>
+    <color name="theme_purple50_sidebar_extend_item1">#D500F9</color>
+    <color name="theme_purple50_sidebar_extend_item2">#E040FB</color>
+    <color name="theme_purple50_sidebar_extend_item3">#EA80FC</color>
+
+    <color name="theme_purple50_sidebar_extend_noitem">#E1BEE7</color>
+
+    <!-- Pink50 Theme Colors -->
+    <color name="theme_pink50_sidebar_extend_item0">#C51162</color>
+    <color name="theme_pink50_sidebar_extend_item1">#F50057</color>
+    <color name="theme_pink50_sidebar_extend_item2">#FF4081</color>
+    <color name="theme_pink50_sidebar_extend_item3">#FF80AB</color>
+
+    <color name="theme_pink50_sidebar_extend_noitem">#FCE4EC</color>
+
+    <!-- DeepPurple50 Theme Colors -->
+    <color name="theme_deeppurple50_sidebar_extend_item0">#6200EA</color>
+    <color name="theme_deeppurple50_sidebar_extend_item1">#651FFF</color>
+    <color name="theme_deeppurple50_sidebar_extend_item2">#7C4DFF</color>
+    <color name="theme_deeppurple50_sidebar_extend_item3">#B388FF</color>
+
+    <color name="theme_deeppurple50_sidebar_extend_noitem">#D1C4E9</color>
+
+
+    <!-- Green50 Theme Colors -->
+    <color name="theme_green50_sidebar_extend_item0">#00C853</color>
+    <color name="theme_green50_sidebar_extend_item1">#00E676</color>
+    <color name="theme_green50_sidebar_extend_item2">#69F0AE</color>
+    <color name="theme_green50_sidebar_extend_item3">#B9F6CA</color>
+
+    <!-- Lime50 Theme Colors -->
+    <color name="theme_lime50_sidebar_extend_item0_alt">#4cd602</color>
+    <color name="theme_lime50_sidebar_extend_item0">#74e304</color>
+    <color name="theme_lime50_sidebar_extend_item1">#C6FF00</color>
+    <color name="theme_lime50_sidebar_extend_item2">#EEFF41</color>
+    <color name="theme_lime50_sidebar_extend_item3">#F4FF81</color>
+
+    <color name="theme_lime50_sidebar_extend_noitem">#F0F4C3</color>
+
+
+    <!-- Red50 Theme Colors -->
+    <color name="theme_red50_sidebar_extend_item0">#D50000</color>
+    <color name="theme_red50_sidebar_extend_item1">#FF1744</color>
+    <color name="theme_red50_sidebar_extend_item2">#FF5252</color>
+    <color name="theme_red50_sidebar_extend_item3">#FF8A80</color>
+
+    <color name="theme_red50_sidebar_extend_noitem">#FFCDD2</color>
+    <!-- Yellow50 Theme Colors -->
+    <color name="theme_yellow50_sidebar_extend_item0">#FFD600</color>
+    <color name="theme_yellow50_sidebar_extend_item1">#FFEA00</color>
+    <color name="theme_yellow50_sidebar_extend_item2">#FFFF00</color>
+    <color name="theme_yellow50_sidebar_extend_item3">#FFFF8D</color>
+
+    <color name="theme_yellow50_sidebar_extend_noitem">#FFF9C4</color>
+
 </resources>
