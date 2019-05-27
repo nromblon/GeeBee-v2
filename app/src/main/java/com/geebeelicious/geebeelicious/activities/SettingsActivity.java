@@ -43,6 +43,7 @@ import com.geebeelicious.geebeelicious.models.Syncable;
 import com.geebeelicious.geebeelicious.models.consultation.School;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -90,10 +91,14 @@ public class SettingsActivity extends ActionBarActivity implements RecyclerViewC
     private RecyclerView.LayoutManager schoolLayoutManager;
     private Button addSchoolButton;
     private Button removeSchoolButton;
+    private TextView schoolNameTV;
 
     @Override
     public void recyclerViewListClicked(View v, int position) {
-
+        School selected = schools.get(position);
+        String schoolName = selected.getSchoolName();
+        this.schoolNameTV.setText("Selected: "+schoolName);
+        this.chosenSchool = selected;
     }
 
     /**
@@ -101,8 +106,6 @@ public class SettingsActivity extends ActionBarActivity implements RecyclerViewC
      *
      * @see android.app.Activity#onCreate(Bundle)
      */
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +115,7 @@ public class SettingsActivity extends ActionBarActivity implements RecyclerViewC
 
         chalkFont = Typeface.createFromAsset(getAssets(), "fonts/DJBChalkItUp.ttf");
 
-        TextView schoolNameTV = (TextView) findViewById(R.id.schoolnameTV);
+        schoolNameTV = (TextView) findViewById(R.id.schoolnameTV);
         schoolNameTV.setTypeface(chalkFont);
 
         TextView chartNameTV = (TextView) findViewById(R.id.visualacuitychartNameTV);
@@ -135,6 +138,20 @@ public class SettingsActivity extends ActionBarActivity implements RecyclerViewC
                     finish();
             }
         });
+
+        try{
+            int savedChosenSchool = getSchoolPreferences();
+            for (School s : schools){
+                if(s.getSchoolId() == savedChosenSchool) {
+                    this.chosenSchool = s;
+                    break;
+                }
+            }
+            String schoolname = chosenSchool.getSchoolName();
+            this.schoolNameTV.setText("Selected: "+schoolname);
+        }catch(Exception e){
+            this.schoolNameTV.setText(R.string.school_select_header);
+        }
     }
 
     /**
@@ -583,6 +600,28 @@ public class SettingsActivity extends ActionBarActivity implements RecyclerViewC
 
     }
 
+    /**
+     * Gets the schoolID of the preferred school stored in device storage.
+     *
+     * @return ID of the preferred school stored in device storage via Settings.
+     */
+    public int getSchoolPreferences() {
+        //deleteFile("SchoolIDPreferences");
+        int schoolID = 0; //default schoolID
+        byte[] byteArray = new byte[4];
+        try {
+            FileInputStream fis = openFileInput("SchoolIDPreferences");
 
+            fis.read(byteArray, 0, 4);
+            fis.close();
+        } catch (IOException e) {
+            return 1;
+        }
+
+        ByteBuffer b = ByteBuffer.wrap(byteArray);
+        schoolID = b.getInt();
+        Log.d(TAG, "getSchoolPreferences: " + schoolID);
+        return schoolID;
+    }
 
 }

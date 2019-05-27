@@ -49,7 +49,8 @@ public class SchoolsRecyclerAdapter extends RecyclerView.Adapter<SchoolsRecycler
         public void onClick(View v) {
             itemListener.recyclerViewListClicked(v, this.getLayoutPosition());
             selectedIndex = this.getLayoutPosition();
-            Toast.makeText(getContext(), schools.get(selectedIndex).getSchoolName() + " selected", Toast.LENGTH_SHORT).show();
+            School selected = schools.get(selectedIndex);
+            Toast.makeText(getContext(), selected.getSchoolName() + " selected", Toast.LENGTH_SHORT).show();
             Log.d("SchoolsRecyclerAdapter", "Selected Index: " + selectedIndex);
         }
     }
