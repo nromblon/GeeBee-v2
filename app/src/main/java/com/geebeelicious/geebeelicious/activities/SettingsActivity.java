@@ -106,7 +106,7 @@ public class SettingsActivity extends ActionBarActivity implements RecyclerViewC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.re_activity_settings);
 
         geebeeDb = new DatabaseAdapter(getApplicationContext());
 

@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">GeeBee</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_calibration">CalibrationActivity</string>
     <string name="title_activity_hearing_calibration">HearingCalibrationActivity</string>
-    <string name="calibration_in_progress">Calibrating...</string>
     <string name="title_activity_consultation">ConsultationActivity</string>
     <string name="title_activity_monitoring_consultation_choice">MonitoringConsultationChoice</string>
     <string name="MonitoringOrConsultationQuestion">What would you like to do?</string>
@@ -11,12 +9,7 @@
     <string name="Consultation">Consultation</string>
     <string name="title_activity_patient_list">PatientListActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
-    <string name="school_name">School Name</string>
-    <string name="visualacuity_chart_name">Visual Acuity Chart</string>
-    <string name="save">Save</string>
     <string name="search_patients_hint">Search patients...</string>
-    <string name="calibrate_button">Calibrate</string>
-    <string name="calibrate_settings">Calibrate Hearing Test</string>
     <string name="title_activity_add_patient">AddPatientActivity</string>
     <string name="first_name">What is your first name?</string>
     <string name="last_name">What is your last name?</string>
@@ -38,11 +31,21 @@
     <string name="remove_school">-</string>
     <string name="use_app">Use GeeBeeCapture</string>
 
+    <!--Settings Activity-->
+    <string name="action_settings">Settings</string>
+    <string name="calibration_in_progress">Calibrating...</string>
+    <string name="school_select_header">Select a school:</string>
+    <string name="school_name">School Name</string>
+    <string name="visualacuity_chart_name">Visual Acuity Chart</string>
+    <string name="calibrate_button">Calibrate</string>
+    <string name="calibrate_settings">Calibrate Hearing Test</string>
+    <string name="save">Save</string>
     <!--Spinner Items-->
     <string-array name="visualacuity_chart_names">
         <item>Snellen Eye Chart</item>
         <item>Tumbling E Eye Chart</item>
     </string-array>
+    <!--End of Settings Activity-->
 
     <!-- Buttons -->
     <string name="Yes">Yes</string>
