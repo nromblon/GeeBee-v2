@@ -393,6 +393,7 @@ public class SettingsActivity extends ActionBarActivity implements RecyclerViewC
                     e.printStackTrace();
                 }
             }
+
             private boolean uploadAllData() {
                 boolean successful = true;
                 Syncable syncableToUpload = geebeeDb.getAllUnsyncedRows();
