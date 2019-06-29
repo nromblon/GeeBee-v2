@@ -48,6 +48,9 @@ public class VisualAcuityFragment extends MonitoringTestFragment {
      */
     private ImageView chartView;
 
+    private VisualAcuityResult leftEyeResult;
+    private VisualAcuityResult rightEyeResult;
+
     /**
      * Constructor.
      *
@@ -72,6 +75,10 @@ public class VisualAcuityFragment extends MonitoringTestFragment {
 
         chartView = (ImageView) view.findViewById(R.id.chartLine);
         final ChartHelper chartHelper = new ChartHelper(chartView, getChartPreference());
+        rightEyeResult = null;
+        leftEyeResult = null;
+
+
         Button yesButton = (Button) view.findViewById(R.id.YesButton);
         Button noButton = (Button) view.findViewById(R.id.NoButton);
         Typeface chalkFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/DJBChalkItUp.ttf");
@@ -152,8 +159,6 @@ public class VisualAcuityFragment extends MonitoringTestFragment {
      * @param chartHelper
      */
     private void updateResults(ChartHelper chartHelper) {
-        VisualAcuityResult rightEyeResult = null;
-        VisualAcuityResult leftEyeResult = null;
 
         if (!chartHelper.isRightTested() && rightEyeResult == null) {
             rightEyeResult = new VisualAcuityResult("Right", chartHelper.getResult());

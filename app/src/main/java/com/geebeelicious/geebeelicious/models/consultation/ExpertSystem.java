@@ -252,6 +252,8 @@ public class ExpertSystem {
      * @param answer
      */
     private void updateAnsweredStatusSymptomFamily(int answer) {
+        Log.e(TAG,"GetbetterDB: "+getBetterDb);
+        Log.e(TAG, "General question: "+generalQuestion);
         getBetterDb.updateAnsweredStatusSymptomFamily(generalQuestion.getSymptomFamilyId(), answer);
     }
 
@@ -496,6 +498,7 @@ public class ExpertSystem {
         } else {
             introductionSentence = "A " + patientGender + " patient, " + patientName + ", who is " + patientAge +
                     " years old, is complaining about " + attachComplaints();
+
         }
 
         return introductionSentence;

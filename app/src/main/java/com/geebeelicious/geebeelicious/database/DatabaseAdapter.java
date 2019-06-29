@@ -483,25 +483,39 @@ public class DatabaseAdapter {
 
         StringBuilder sql = new StringBuilder("Select symptom_name_english AS positiveSymptom, answer_phrase AS answerPhrase" +
                 " FROM tbl_symptom_list WHERE ");
-
+        int positiveSymptomCount = 0;
         for (PatientAnswers answer : patientAnswers) {
             if (answer.getAnswer().equals("Yes")) {
                 sql.append(delim).append("_id = ").append(answer.getSymptomId());
                 delim = " OR ";
+                positiveSymptomCount++;
             }
+            Log.d(TAG,"Symptom: "+answer.getSymptomId()+" | Answer: "+answer.getAnswer());
+        }
+        Log.d(TAG,"Patient Answers count: " + patientAnswers.size());
+
+        // This should'nt happen in real scenario, but added just to avoid syntax errors.
+        // Added If clause and enclosed succeeding code
+        // Without this, the app crashes with a SQLite syntax error. Code by Neil Romblon
+        if(positiveSymptomCount > 0) {
+
+            Log.d(TAG, "SQL Statement: " + sql);
+            Cursor c = getBetterDb.rawQuery(sql.toString(), null);
+
+            while (c.moveToNext()) {
+                PositiveResults positive = new PositiveResults(c.getString(c.getColumnIndexOrThrow("positiveSymptom")),
+                        c.getString(c.getColumnIndexOrThrow("answerPhrase")));
+
+                results.add(positive);
+            }
+
+            c.close();
+            return results;
         }
 
-        Log.d(TAG, "SQL Statement: " + sql);
-        Cursor c = getBetterDb.rawQuery(sql.toString(), null);
+        // If it doesn't pass on the if block, results ArrayList will be empty.
+        // This occurs when the user selects "No" for all symptoms
 
-        while (c.moveToNext()) {
-            PositiveResults positive = new PositiveResults(c.getString(c.getColumnIndexOrThrow("positiveSymptom")),
-                    c.getString(c.getColumnIndexOrThrow("answerPhrase")));
-
-            results.add(positive);
-        }
-
-        c.close();
         return results;
     }
 
@@ -524,8 +538,14 @@ public class DatabaseAdapter {
         values.put(Patient.C_GENDER, patient.getGender());
         values.put(Patient.C_SCHOOL_ID, patient.getSchoolId());
         values.put(Patient.C_HANDEDNESS, patient.getHandedness());
-        values.put(Patient.C_REMARKS_STRING, patient.getRemarksString());
-        values.put(Patient.C_REMARKS_AUDIO, patient.getRemarksAudio());
+        String remarks = patient.getRemarksString();
+        if(patient.getRemarksString() == null)
+            remarks = "";
+        values.put(Patient.C_REMARKS_STRING, remarks);
+        byte[] remarksAudio = patient.getRemarksAudio();
+        if(remarksAudio == null)
+            remarksAudio = new byte[1];
+        values.put(Patient.C_REMARKS_AUDIO, remarksAudio);
         values.put("synced", 0);
 
 
@@ -578,6 +598,8 @@ public class DatabaseAdapter {
         values.put(HPI.C_PATIENT_ID, hpi.getPatientId());
         values.put(HPI.C_DATE_CREATED, hpi.getDateCreated());
         values.put(HPI.C_HPI_TEXT, hpi.getHpiText());
+        // code below is a hotfix; Not sure if this is the proper of handling this. Code by Neil Romblon
+        values.put("synced", false);
 
         row = (int) getBetterDb.insert(HPI.TABLE_NAME, null, values);
         Log.d(TAG, "insertHPI Result: " + row);

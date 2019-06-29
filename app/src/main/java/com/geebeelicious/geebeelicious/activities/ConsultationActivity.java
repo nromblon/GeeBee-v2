@@ -143,27 +143,27 @@ public class ConsultationActivity extends ECAActivity {
      * Shows the hpi to user; Ends consultation activity.
      */
     private void doneConsultation() {
-        CountDownTimer timer;
+//        CountDownTimer timer;
         LinearLayout hpiLayout = (LinearLayout) findViewById(R.id.hpiLayout);
         RelativeLayout choicesLayout = (RelativeLayout) findViewById(R.id.choicesLayout);
 
-        timer = new CountDownTimer(15000, 15000) { //timer for the transition
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                finish();
-            }
-        };
+//        timer = new CountDownTimer(15000, 15000) { //timer for the transition
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                finish();
+//            }
+//        };
 
         hpiLayout.setVisibility(View.VISIBLE);
         choicesLayout.setVisibility(View.GONE);
 
         ecaFragment.sendToECAToSPeak(R.string.consultation_end);
-        timer.start();
+//        timer.start();
     }
 
     /**

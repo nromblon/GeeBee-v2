@@ -69,6 +69,12 @@ public class VaccinationFragment extends Fragment {
      */
     private Button pictureButton;
 
+    /**
+     * True if picture is successfully taken.
+     * Used to check saving on the skip button.
+     */
+    private boolean isCaptureSuccess;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
@@ -98,7 +104,7 @@ public class VaccinationFragment extends Fragment {
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (vaccinationHelper.getmCurrentPhotoPath() != null) {
+                if (isCaptureSuccess) {
                     Record record = fragmentInteraction.getRecord();
                     record.setVaccination(vaccinationHelper.getPicture());
                 }
@@ -110,6 +116,7 @@ public class VaccinationFragment extends Fragment {
         pictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isCaptureSuccess = false;
                 dispatchTakePictureIntent();
             }
         });
@@ -165,6 +172,7 @@ public class VaccinationFragment extends Fragment {
         InputStream stream = null;
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
             vaccinationHelper.setPic();
+            isCaptureSuccess = true;
             skipButton.setText(R.string.continueWord);
             pictureButton.setText(R.string.retake);
             fragmentInteraction.setInstructions(R.string.vaccination_confirm);
