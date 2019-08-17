@@ -40,6 +40,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile(name: 'vhmobile-release', ext: 'aar')
     compile 'com.android.support:appcompat-v7:19.1.0'
+    compile "com.android.support:appcompat-v7:23.0.0"
     compile 'com.android.support:support-v4:19.1.0'
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.android.support:recyclerview-v7:23.1.1'

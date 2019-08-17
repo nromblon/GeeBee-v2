@@ -151,7 +151,8 @@ public class MonitoringFragment extends MonitoringTestFragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setComponent(new ComponentName("ph.edu.dlsu.reanna_lim.imageprocessingmodule","ph.edu.dlsu.reanna_lim.imageprocessingmodule.MainActivityTablet"));
+//                intent.setComponent(new ComponentName("ph.edu.dlsu.reanna_lim.imageprocessingmodule","ph.edu.dlsu.reanna_lim.imageprocessingmodule.MainActivityTablet"));
+                intent.setComponent(new ComponentName("com.geebeelicious.capture","com.geebeelicious.capture.CaptureActivityTablet"));
                 startActivityForResult(intent, 1);
             }
         });
