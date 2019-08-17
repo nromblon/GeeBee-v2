@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:keepScreenOn="true"
+    android:baselineAligned="false"
+    style="@style/DefaultBackground"
+    tools:context=".activities.PatientListActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".75"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/search_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_patients_hint"
+            android:inputType="text"
+            android:textSize="@dimen/_16ssp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:showDividers="middle">
+
+            <ListView
+                android:id="@+id/patientListView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5" />
+
+            <TextView
+                android:id="@+id/patientDetailsTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:padding="20dp"
+                android:scrollbars="vertical"
+                android:text="patient details"
+                android:textSize="@dimen/_14ssp"
+                android:verticalScrollbarPosition="right" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutECA"
+        style="@style/DefaultBackground"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".25"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ECA"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".45"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/placeholderECA"
+                style="@style/ECAPlaceholder"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="10dp"
+                android:layout_weight=".8"
+                android:longClickable="false">
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/placeholderECAText"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/placeholderECA"
+                android:layout_weight=".2"
+                android:padding="5dp"
+                android:paddingTop="10dp"
+                android:scrollbars="vertical"
+                android:textSize="@dimen/_10ssp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/patientRecordsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            android:layout_weight=".2"
+            android:maxLines="10"
+            android:scrollbars="vertical"
+            android:textSize="@dimen/_10ssp" />
+
+        <LinearLayout
+            android:id="@+id/ButtonsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@+id/placeholderECAText"
+            android:layout_weight=".4"
+            android:gravity="center_horizontal|fill_horizontal"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/addPatientButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_above="@+id/selectPatientButton"
+                android:layout_alignStart="@+id/selectPatientButton"
+                android:layout_weight=".33"
+                android:padding="10dp"
+                android:text="@string/new_patient"
+                android:textAlignment="center"
+                android:textSize="@dimen/_10ssp" />
+
+            <Button
+                android:id="@+id/UploadDataButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_below="@+id/selectPatientButton"
+                android:layout_centerHorizontal="true"
+                android:layout_weight=".33"
+                android:enabled="true"
+                android:padding="10dp"
+                android:text="@string/sync_data"
+                android:textAlignment="center"
+                android:textSize="@dimen/_10ssp" />
+
+            <Button
+                android:id="@+id/selectPatientButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignStart="@+id/UploadDataButton"
+                android:layout_centerVertical="true"
+                android:layout_weight=".33"
+                android:enabled="false"
+                android:padding="10dp"
+                android:text="@string/select_patient"
+                android:textColor="#757575"
+                android:textSize="@dimen/_10ssp" />
+
+            <Button
+                android:id="@+id/secretButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@android:color/transparent"
+                android:enabled="false"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

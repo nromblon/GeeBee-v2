@@ -82,7 +82,7 @@ public class PatientListActivity extends ECAActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_list);
+        setContentView(R.layout.re_activity_patient_list);
 
         final Typeface chalkFont = Typeface.createFromAsset(getAssets(), "fonts/DJBChalkItUp.ttf");
 
@@ -147,6 +147,11 @@ public class PatientListActivity extends ECAActivity {
         });
 
 
+        // Looks like secretButton is used for retrieving a certain patient's complete records.
+        // Commenting it out for now, make sure to make the button visible again in the layout when re-enabling the code
+        // and comment out "secretButton.setEnabled(true);" below.
+        // -- by Neil Romblon (August 2019)
+        /*
         final Button secretButton = (Button) findViewById(R.id.secretButton);
         secretButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -180,6 +185,7 @@ public class PatientListActivity extends ECAActivity {
                 return true;
             }
         });
+        */
 
 
         patientListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -195,7 +201,7 @@ public class PatientListActivity extends ECAActivity {
                 patientInfoView.setText(patientInfo);
 
                 selectPatientButton.setEnabled(true);
-                secretButton.setEnabled(true);
+//                secretButton.setEnabled(true);
                 selectPatientButton.setTextColor(Color.WHITE);
 
                 InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

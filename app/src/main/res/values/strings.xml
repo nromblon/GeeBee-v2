@@ -113,5 +113,6 @@
     <string name="finemotor_fail">You may need to work on your fine motor skills!</string>
     <string name="finemotor_pass">Your fine motor skills are great!</string>
     <string name="recording_in_progress">Recording...</string>
+    <string name="sync_data">Sync Data</string>
 
 </resources>
