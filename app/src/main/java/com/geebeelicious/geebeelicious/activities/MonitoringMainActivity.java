@@ -376,7 +376,7 @@ public class MonitoringMainActivity extends ECAActivity implements OnMonitoringF
      * @param fragment to be attached to monitoringFragmentContainer.
      */
     private void replaceFragment(final Fragment fragment) {
-        shortcutForHearingfragment(fragment); //this is only used for testing
+//        shortcutForHearingfragment(fragment); //this is only used for testing
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.monitoringFragmentContainer, fragment, fragments[currentFragmentIndex]);

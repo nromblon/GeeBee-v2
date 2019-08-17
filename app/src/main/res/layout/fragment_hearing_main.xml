@@ -1,44 +1,54 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     style="@style/DefaultBackground"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".fragments.HearingMainFragment">
 
     <RelativeLayout
+        android:id="@+id/relativeLayoutTest"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/linearLayoutYesNo"
         android:layout_alignParentTop="true"
-        android:id="@+id/relativeLayoutTest"
-        android:layout_above="@+id/linearLayoutYesNo">
+        android:layout_weight=".9">
+
+        <Button
+            android:id="@+id/skip_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skip"
+            android:textSize="@dimen/_14ssp" />
 
         <ImageView
+            android:id="@+id/hearingTestImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/hearingTestImage"
             android:layout_centerInParent="true"
             android:src="@drawable/hearing_test" />
 
     </RelativeLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/linearLayoutYesNo"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/linearLayoutYesNo"
+        android:layout_weight=".1"
+        android:orientation="horizontal"
         android:weightSum="1">
 
         <Button
-            android:paddingTop="15dp"
-            android:drawablePadding="-15dp"
-            android:drawableTop="@drawable/button_face_happy"
+            android:id="@+id/YesButton"
+            style="@style/TestButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/YesButton"
-            style="@style/TestButton" />
+            android:drawablePadding="-15dp"
+            android:drawableTop="@drawable/button_face_happy"
+            android:paddingTop="15dp" />
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

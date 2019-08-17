@@ -94,6 +94,15 @@ public class HearingMainFragment extends MonitoringTestFragment {
             }
         });
 
+        final Button skipButton = (Button) view.findViewById(R.id.skip_button);
+        skipButton.setTag(chalkFont);
+        skipButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                endTestShortCut();
+            }
+        });
+
         final Runnable disableTest = new Runnable() {
             @Override
             public void run() {
@@ -214,9 +223,10 @@ public class HearingMainFragment extends MonitoringTestFragment {
      */
     public void endTestShortCut() { //For testing purposes only
         Record record = fragmentInteraction.getRecord();
-        record.setHearingRight("Mild Hearing Loss");
-        record.setHearingLeft("Moderately-Severe Hearing Loss");
-
+//        record.setHearingRight("Mild Hearing Loss");
+//        record.setHearingLeft("Moderately-Severe Hearing Loss");
+        record.setHearingRight("Test Skipped");
+        record.setHearingLeft("Test Skipped");
         stopTest();
         callnextFragment();
     }
