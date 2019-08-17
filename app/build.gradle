@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 18
+    compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
 defaultConfig {
@@ -36,7 +36,7 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile(name: 'vhmobile-release', ext: 'aar')
     compile 'com.android.support:appcompat-v7:19.1.0'
@@ -44,4 +44,5 @@ dependencies {
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.android.support:recyclerview-v7:23.1.1'
     compile 'com.intuit.ssp:ssp-android:1.0.6'
+    compile project(':openCVLibrary320')
 }

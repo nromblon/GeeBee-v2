@@ -25,6 +25,11 @@ public class MainActivity extends ECAActivity {
      */
     private boolean hasSpoken;
 
+    // init OpenCV
+    static {
+        System.loadLibrary("opencv_java");
+    }
+
     /**
      * Initializes views and other activity objects.
      *
@@ -39,7 +44,9 @@ public class MainActivity extends ECAActivity {
 //        startButton.setTypeface(chalkFont);
         ImageView settingsButton = (ImageView) findViewById(R.id.settingsButton);
 
+        // init VHMobile
         integrateECA();
+
 
         if (savedInstanceState == null) {
             hasSpoken = false;
