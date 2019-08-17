@@ -13,7 +13,7 @@ import com.geebeelicious.geebeelicious.fragments.ECAFragment;
  *
  * @author Mary Grace Malana
  */
-public abstract class ECAActivity extends AppCompatActivity {
+public abstract class ECAActivity extends ActionBarActivity {
 
     /**
      * Fragment that is attached to the activity's ECA placeholder.
