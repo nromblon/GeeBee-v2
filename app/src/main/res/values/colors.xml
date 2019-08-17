@@ -15,7 +15,7 @@
     <color name="green">#06b5a6</color>
     <color name="black">#000000</color>
     <color name="sidebarText">#ffffff</color>
-    <color name="lightGrey">#ebebeb</color>
+    <color name="lightGrey">#76ebebeb</color>
     <color name="greenHighlight">#00c7a9</color>
     <color name="transparentHighlight">#9e00c7a9</color>
     <color name="transparentBlack">#c8000000</color>
@@ -66,7 +66,7 @@
     <!-- LightGreen50 Theme Colors -->
     <color name="theme_lightgreen50_sidebar_extend_item0">#64DD17</color>
     <color name="theme_lightgreen50_sidebar_extend_item1">#76FF03</color>
-    <color name="theme_lightgreen50_sidebar_extend_item2">#B2FF59</color>
+    <color name="theme_lightgreen50_sidebar_extend_item2">#86b2ff59</color>
     <color name="theme_lightgreen50_sidebar_extend_item3">#CCFF90</color>
 
     <color name="theme_lightgreen50_sidebar_extend_noitem">#dcedc8</color>
@@ -131,7 +131,7 @@
     <color name="theme_lime50_sidebar_extend_item0_alt">#4cd602</color>
     <color name="theme_lime50_sidebar_extend_item0">#74e304</color>
     <color name="theme_lime50_sidebar_extend_item1">#C6FF00</color>
-    <color name="theme_lime50_sidebar_extend_item2">#EEFF41</color>
+    <color name="theme_lime50_sidebar_extend_item2">#64eeff41</color>
     <color name="theme_lime50_sidebar_extend_item3">#F4FF81</color>
 
     <color name="theme_lime50_sidebar_extend_noitem">#F0F4C3</color>

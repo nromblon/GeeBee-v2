@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
     android:animationCache="false"
     android:orientation="vertical"
     android:paddingLeft="@dimen/_4ssp">
@@ -12,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:textColor="@color/abc_search_url_text_normal"
-        android:textSize="@dimen/_16ssp"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_10ssp"
         tools:text="test123512321321" />
 
     <TextView
@@ -21,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:textColor="@color/black"
+        android:textColor="@android:color/darker_gray"
         android:textSize="@dimen/_8ssp"
         tools:text="test2345" />
 
