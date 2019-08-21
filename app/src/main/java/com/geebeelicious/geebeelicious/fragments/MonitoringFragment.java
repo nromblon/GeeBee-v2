@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.geebeelicious.geebeelicious.R;
 import com.geebeelicious.geebeelicious.activities.MonitoringMainActivity;
+import com.geebeelicious.geebeelicious.activities.capture.CaptureActivityTablet;
 import com.geebeelicious.geebeelicious.interfaces.MonitoringTestFragment;
 import com.geebeelicious.geebeelicious.interfaces.OnMonitoringFragmentInteractionListener;
 import com.geebeelicious.geebeelicious.models.bmi.BMICalculator;
@@ -150,9 +151,10 @@ public class MonitoringFragment extends MonitoringTestFragment {
         useAppButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_SEND);
+//                Intent intent = new Intent(Intent.ACTION_SEND);
 //                intent.setComponent(new ComponentName("ph.edu.dlsu.reanna_lim.imageprocessingmodule","ph.edu.dlsu.reanna_lim.imageprocessingmodule.MainActivityTablet"));
-                intent.setComponent(new ComponentName("com.geebeelicious.capture","com.geebeelicious.capture.CaptureActivityTablet"));
+                Intent intent = new Intent(getActivity(),CaptureActivityTablet.class);
+//                intent.setComponent(new ComponentName("com.geebeelicious.activities.capture","CaptureActivityTablet"));
                 startActivityForResult(intent, 1);
             }
         });

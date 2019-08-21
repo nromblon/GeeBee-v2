@@ -1,4 +1,4 @@
-package com.geebeelicious.capture;
+package com.geebeelicious.geebeelicious.activities.capture;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -11,6 +11,7 @@
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="search_patients_hint">Search patients...</string>
     <string name="title_activity_add_patient">AddPatientActivity</string>
+    <string name="title_activity_capture">CaptureActivityTablet</string>
     <string name="first_name">What is your first name?</string>
     <string name="last_name">What is your last name?</string>
     <string name="birthdate">What is your birth date?</string>
