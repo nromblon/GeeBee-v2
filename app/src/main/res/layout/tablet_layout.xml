@@ -98,18 +98,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/compute"/>
+
         <TextView
             android:id="@+id/tv_height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Height: "
-            android:textSize="25sp"/>
+            android:textColor="@android:color/black"
+            android:textSize="25sp" />
+
         <TextView
             android:id="@+id/tv_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Weight: "
-            android:textSize="25sp"/>
+            android:textColor="@android:color/black"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/tv_BMI"

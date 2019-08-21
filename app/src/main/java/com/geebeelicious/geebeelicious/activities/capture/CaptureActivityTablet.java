@@ -50,8 +50,9 @@ public class CaptureActivityTablet extends AppCompatActivity {
     Button btn_take_picture1, btn_load_image1, btn_take_picture2, btn_load_image2, btn_compute, btn_go_back, btn_cancel,btn_calibrate;
     TextView tv_height, tv_weight, tv_BMI;
     int currentImage = 0; // 0 for front, 1 for side
-    Double finalHeight=0.0;
+    Double final_height=0.0;
     Double final_weight = 0.0;
+    Double final_BMI;
     private String path1, path2;
     private Bitmap bmp_silhouette, siFront, siSide;
 
@@ -194,13 +195,13 @@ public class CaptureActivityTablet extends AppCompatActivity {
                 System.out.println("Height: "+frontHeight+"\n");
 
                 double tsHeight = sideHeight - sideHeight*((Sslope-Fslope)/Sslope*.1);
-                double finalHeight = (frontHeight+tsHeight)/2;
-                double finalWeight = (sideLengthS*0.112056783)+(-0.084950304*sideLengthF)+(0.412067434*finalHeight)-27.12699289;
+                final_height = (frontHeight+tsHeight)/2;
+                final_weight = (sideLengthS*0.112056783)+(-0.084950304*sideLengthF)+(0.412067434*final_height)-27.12699289;
 
-                double finalBMI = finalWeight / (finalHeight * finalHeight) * 10000;
-                tv_height.setText(String.format("Height: %.2f", finalHeight) + "cm");
-                tv_weight.setText(String.format("Weight: %.2f", finalWeight) + "kg");
-                tv_BMI.setText(String.format("BMI: %.2f", finalBMI));
+                final_BMI = final_weight / (final_height * final_height) * 10000;
+                tv_height.setText(String.format("Height: %.2f", final_height) + "cm");
+                tv_weight.setText(String.format("Weight: %.2f", final_weight) + "kg");
+                tv_BMI.setText(String.format("BMI: %.2f", final_BMI));
             }
 
         });
@@ -209,18 +210,18 @@ public class CaptureActivityTablet extends AppCompatActivity {
         btn_go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (finalHeight == 0 || final_weight == 0) { //if no height or weight was entered
+                if (final_height == 0 || final_weight == 0) { //if no height or weight was entered
                     Toast.makeText(getBaseContext(), "No height and weight detected", Toast.LENGTH_LONG).show();
                 } else {
                     // convert the silhouette from bitmap to byte[]
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bmp_silhouette.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                    byte[] silhouette = stream.toByteArray();
+//                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//                    bmp_silhouette.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//                    byte[] silhouette = stream.toByteArray();
 
                     Intent backIntent = getIntent();
-                    backIntent.putExtra("height", finalHeight);
+                    backIntent.putExtra("height", final_height);
                     backIntent.putExtra("weight", final_weight);
-                    backIntent.putExtra("silhouette", silhouette);
+//                    backIntent.putExtra("silhouette", silhouette);
                     setResult(RESULT_OK, backIntent);
                     finish();
                 }
