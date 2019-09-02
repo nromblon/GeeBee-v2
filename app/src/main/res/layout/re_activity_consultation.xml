@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/DefaultBackground"
+    tools:context=".activities.ConsultationActivity">
+
+    <FrameLayout
+        android:id="@+id/placeholderECA"
+        style="@style/ECAPlaceholder"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6"
+        android:longClickable="false">
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/choicesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toEndOf="@+id/placeholderECA"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/placeholderECAText"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="0.6"
+                android:gravity="center"
+                android:textSize="70sp" />
+
+            <Button
+                android:id="@+id/YesButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignEnd="@+id/NoButton"
+                android:layout_alignStart="@+id/NoButton"
+                android:layout_below="@+id/placeholderECAText"
+                android:layout_marginTop="30dp"
+                android:layout_weight="0.2"
+                android:drawableLeft="@drawable/button_yes_check"
+                android:padding="20dp"
+                android:text="@string/Yes"
+                android:textAlignment="center"
+                android:textSize="@dimen/_20ssp" />
+
+            <Button
+                android:id="@+id/NoButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:layout_weight="0.2"
+                android:drawableLeft="@drawable/button_no_cross"
+                android:padding="20dp"
+                android:text="@string/No"
+                android:textAlignment="center"
+                android:textSize="@dimen/_20ssp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/hpiLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toEndOf="@+id/placeholderECA"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/hpiTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/hpi"
+                android:textAlignment="center"
+                android:textSize="@dimen/_22ssp" />
+
+            <ScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/hpiPlaceholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/_18ssp" />
+            </ScrollView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

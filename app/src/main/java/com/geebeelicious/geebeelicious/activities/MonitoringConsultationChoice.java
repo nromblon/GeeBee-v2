@@ -43,7 +43,7 @@ public class MonitoringConsultationChoice extends ECAActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_monitoring_consultation_choice);
+        setContentView(R.layout.re_activity_monitoring_consultation_choice);
 
         Button mButton = (Button) findViewById(R.id.monitoringButton);
         Button cButton =(Button)  findViewById(R.id.consultationButton);
