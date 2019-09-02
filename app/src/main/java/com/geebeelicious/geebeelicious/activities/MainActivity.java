@@ -1,9 +1,11 @@
 package com.geebeelicious.geebeelicious.activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -68,9 +70,9 @@ public class MainActivity extends ECAActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.re_activity_main);
-        ImageButton startButton = (ImageButton) findViewById(R.id.startButton_re);
-//        Typeface chalkFont = Typeface.createFromAsset(getAssets(), "fonts/DJBChalkItUp.ttf");
-//        startButton.setTypeface(chalkFont);
+        Button startButton = (Button) findViewById(R.id.startButton_re);
+        Typeface chalkFont = Typeface.createFromAsset(getAssets(), "fonts/DJBChalkItUp.ttf");
+        startButton.setTypeface(chalkFont);
         ImageView settingsButton = (ImageView) findViewById(R.id.settingsButton);
 
         // init VHMobile

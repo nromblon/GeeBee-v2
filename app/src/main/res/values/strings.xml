@@ -5,6 +5,7 @@
     <string name="title_activity_consultation">ConsultationActivity</string>
     <string name="title_activity_monitoring_consultation_choice">MonitoringConsultationChoice</string>
     <string name="MonitoringOrConsultationQuestion">What would you like to do?</string>
+    <string name="StartAppButtonText">Let\'s Go!</string>
     <string name="Monitoring">Monitoring</string>
     <string name="Consultation">Consultation</string>
     <string name="title_activity_patient_list">PatientListActivity</string>

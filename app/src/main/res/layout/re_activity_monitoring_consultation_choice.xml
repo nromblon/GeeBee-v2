@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/DefaultBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    style="@style/DefaultBackground"
+    android:padding="30dp"
     tools:context=".activities.MonitoringConsultationChoice">
 
     <FrameLayout
@@ -33,36 +34,27 @@
             android:id="@+id/questionMonitoringConsultationChoice"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_alignParentTop="true"
             android:layout_weight="0.4"
             android:gravity="center"
             android:text="@string/MonitoringOrConsultationQuestion"
             android:textSize="@dimen/_20ssp" />
 
         <Button
-            android:id="@+id/consultationButton"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_below="@+id/monitoringButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:layout_weight="0.15"
-            android:padding="20dp"
-            android:text="@string/Consultation"
-            android:textSize="@dimen/_18ssp" />
-
-        <Button
             android:id="@+id/monitoringButton"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_alignEnd="@+id/consultationButton"
-            android:layout_alignStart="@+id/consultationButton"
-            android:layout_below="@+id/questionMonitoringConsultationChoice"
-            android:layout_marginTop="30dp"
             android:layout_weight="0.15"
-            android:padding="20dp"
             android:text="@string/Monitoring"
-            android:textSize="@dimen/_18ssp" />
+            android:textSize="@dimen/_16ssp" />
+
+        <Button
+            android:id="@+id/consultationButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="0.15"
+            android:text="@string/Consultation"
+            android:textSize="@dimen/_16ssp" />
 
         <Space
             android:layout_width="match_parent"

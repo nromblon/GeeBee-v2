@@ -3,6 +3,7 @@ package com.geebeelicious.geebeelicious.interfaces;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.geebeelicious.geebeelicious.R;
 import com.geebeelicious.geebeelicious.fragments.ECAFragment;
@@ -13,7 +14,7 @@ import com.geebeelicious.geebeelicious.fragments.ECAFragment;
  *
  * @author Mary Grace Malana
  */
-public abstract class ECAActivity extends ActionBarActivity {
+public abstract class ECAActivity extends AppCompatActivity {
 
     /**
      * Fragment that is attached to the activity's ECA placeholder.
