@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_focused="true" android:drawable="@drawable/chalkoutline" />
+    <!--<item android:drawable="@drawable/chalkoutline" android:state_focused="true"  android:state_pressed="false" android:state_selected="false" />-->
+    <!--<item android:drawable="@drawable/chalkoutline2" android:state_focused="false"  android:state_pressed="true" android:state_selected="false" />-->
     <item android:state_pressed="true" android:drawable="@drawable/chalkoutline2" />
-    <item android:drawable="@drawable/chalkoutline" />
+    <item android:state_focused="false" android:state_enabled="true" android:drawable="@drawable/chalkoutline" />
+    <item android:state_focused="true" android:state_enabled="true" android:drawable="@drawable/chalkoutline2" />
+    <item android:state_focused="false" android:state_enabled="false" android:drawable="@drawable/chalkoutline3" />
+    <item android:state_focused="true" android:state_enabled="false" android:drawable="@drawable/chalkoutline3" />
+    <!--<item android:drawable="@drawable/chalkoutline"></item>-->
 </selector>

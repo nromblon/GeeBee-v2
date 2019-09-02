@@ -1,10 +1,10 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:buttonStyle">@style/DefaultButton</item>
+        <item name="buttonStyle">@style/DefaultButton</item>
         <!--<item name="android:buttonStyle">@style/Widget.AppCompat.Button</item>-->
         <item name="android:textSize">20sp</item>
         <item name="android:textColorPrimary">#FFFFFF</item>
@@ -13,7 +13,7 @@
         <item name="android:textColorHint">#E0E0E0</item>
     </style>
 
-    <style name="DefaultButton" parent="@style/Widget.AppCompat.Button">
+    <style name="DefaultButton" parent="@android:style/Widget.Button">
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@drawable/button_selector</item>
         <!--<item name="android:textColor">#FFFFFF</item>-->
