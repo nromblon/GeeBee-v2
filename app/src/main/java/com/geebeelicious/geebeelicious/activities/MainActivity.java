@@ -2,6 +2,7 @@ package com.geebeelicious.geebeelicious.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -9,6 +10,10 @@ import android.widget.ImageView;
 import com.geebeelicious.geebeelicious.R;
 import com.geebeelicious.geebeelicious.database.DatabaseAdapter;
 import com.geebeelicious.geebeelicious.interfaces.ECAActivity;
+
+import org.opencv.android.BaseLoaderCallback;
+import org.opencv.android.LoaderCallbackInterface;
+import org.opencv.android.OpenCVLoader;
 
 import java.sql.SQLException;
 
@@ -25,6 +30,25 @@ public class MainActivity extends ECAActivity {
      */
     private boolean hasSpoken;
 
+    public final String TAG = "MainActivity";
+
+    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
+        @Override
+        public void onManagerConnected(int status) {
+            switch (status) {
+                case LoaderCallbackInterface.SUCCESS: {
+                    Log.i(TAG, "OpenCV loaded successfully");
+
+                }
+                break;
+                default: {
+                    super.onManagerConnected(status);
+                }
+                break;
+            }
+        }
+    };
+
     /**
      * Initializes views and other activity objects.
      *
@@ -32,6 +56,16 @@ public class MainActivity extends ECAActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // OpenCV Initialization (Might want to move this to GBCapture Component)
+        if (!OpenCVLoader.initDebug()) {
+            Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
+            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_2_0, this, mLoaderCallback);
+        } else {
+            Log.d(TAG, "OpenCV library found inside package. Using it!");
+            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
+        }
+        // End of OpenCV Initialization
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.re_activity_main);
         ImageButton startButton = (ImageButton) findViewById(R.id.startButton_re);
@@ -39,7 +73,9 @@ public class MainActivity extends ECAActivity {
 //        startButton.setTypeface(chalkFont);
         ImageView settingsButton = (ImageView) findViewById(R.id.settingsButton);
 
+        // init VHMobile
         integrateECA();
+
 
         if (savedInstanceState == null) {
             hasSpoken = false;

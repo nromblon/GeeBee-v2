@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.geebeelicious.geebeelicious.R;
 import com.geebeelicious.geebeelicious.activities.MonitoringMainActivity;
+import com.geebeelicious.geebeelicious.activities.capture.CaptureActivityTablet;
 import com.geebeelicious.geebeelicious.interfaces.MonitoringTestFragment;
 import com.geebeelicious.geebeelicious.interfaces.OnMonitoringFragmentInteractionListener;
 import com.geebeelicious.geebeelicious.models.bmi.BMICalculator;
@@ -150,8 +151,10 @@ public class MonitoringFragment extends MonitoringTestFragment {
         useAppButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setComponent(new ComponentName("ph.edu.dlsu.reanna_lim.imageprocessingmodule","ph.edu.dlsu.reanna_lim.imageprocessingmodule.MainActivityTablet"));
+//                Intent intent = new Intent(Intent.ACTION_SEND);
+//                intent.setComponent(new ComponentName("ph.edu.dlsu.reanna_lim.imageprocessingmodule","ph.edu.dlsu.reanna_lim.imageprocessingmodule.MainActivityTablet"));
+                Intent intent = new Intent(getActivity(),CaptureActivityTablet.class);
+//                intent.setComponent(new ComponentName("com.geebeelicious.activities.capture","CaptureActivityTablet"));
                 startActivityForResult(intent, 1);
             }
         });
@@ -165,13 +168,15 @@ public class MonitoringFragment extends MonitoringTestFragment {
 
         if(requestCode == 1) {
             if(resultCode == Activity.RESULT_OK) {
-                String str_height = data.getExtras().getString("height");
-                String str_weight = data.getExtras().getString("weight");
-                byte[] silhouette = data.getExtras().getByteArray("silhouette");
+                Log.d(TAG,"DATA:"+data.getExtras().toString());
+                double height = data.getDoubleExtra("height",-1);
+                double weight = data.getDoubleExtra("weight",-1);
+//                byte[] silhouette = data.getExtras().getByteArray("silhouette");
+                Log.d(TAG,"Result received: Height: "+height+" | weight: "+weight);
 
-                record.setHeight(Double.parseDouble(str_height));
-                record.setWeight(Double.parseDouble(str_weight));
-                record.setSilhouette(silhouette);
+                record.setHeight(height);
+                record.setWeight(weight);
+//                record.setSilhouette(silhouette);
 
                 endMonitoring();
             }
@@ -249,6 +254,7 @@ public class MonitoringFragment extends MonitoringTestFragment {
     private void updateTestEndRemark() {
         boolean isGirl = fragmentInteraction.isGirl();
         int age = fragmentInteraction.getAge();
+        Log.d(TAG,"Updating Test End Remark: height: "+record.getHeight()+" || weight: "+record.getWeight());
         float bmi = BMICalculator.computeBMIMetric((int) record.getHeight(), (int) record.getWeight());
         int bmiResult = BMICalculator.getBMIResult(isGirl, age, bmi);
         Random randomizer = new Random();

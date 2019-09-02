@@ -101,7 +101,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 18 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="Gradle: com.android.support:support-v4-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.android.support:recyclerview-v7-23.1.1" level="project" />
@@ -114,6 +114,5 @@
     <orderEntry type="library" exported="" name="Gradle: com.android.support:support-annotations:23.1.1@jar" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.android.support:appcompat-v7-23.0.0" level="project" />
     <orderEntry type="module" module-name="openCVLibrary320" exported="" />
-    <orderEntry type="library" exported="" name="Gradle: android-android-18" level="project" />
   </component>
 </module>

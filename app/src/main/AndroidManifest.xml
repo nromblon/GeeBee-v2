@@ -51,6 +51,11 @@
             android:label="@string/title_activity_monitoring"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.capture.CaptureActivityTablet"
+            android:label="@string/title_activity_capture"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest><!--
