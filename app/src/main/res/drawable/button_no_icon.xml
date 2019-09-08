@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/btn_no_icon"
+        android:width="@dimen/_32ssp"
+        android:height="@dimen/_25ssp"
+        android:drawable="@drawable/button_no_cross" />
+</layer-list>

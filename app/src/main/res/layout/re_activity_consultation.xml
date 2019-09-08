@@ -54,8 +54,9 @@
                 android:layout_below="@+id/placeholderECAText"
                 android:layout_marginTop="30dp"
                 android:layout_weight="0.2"
-                android:drawableLeft="@drawable/button_yes_check"
-                android:padding="20dp"
+                android:drawableLeft="@drawable/button_yes_icon"
+                android:paddingLeft="@dimen/_15ssp"
+                android:paddingRight="@dimen/_30ssp"
                 android:text="@string/Yes"
                 android:textAlignment="center"
                 android:textSize="@dimen/_20ssp" />
@@ -67,8 +68,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
                 android:layout_weight="0.2"
-                android:drawableLeft="@drawable/button_no_cross"
-                android:padding="20dp"
+                android:drawableLeft="@drawable/button_no_icon"
+                android:paddingLeft="@dimen/_15ssp"
+                android:paddingRight="@dimen/_30ssp"
                 android:text="@string/No"
                 android:textAlignment="center"
                 android:textSize="@dimen/_20ssp" />

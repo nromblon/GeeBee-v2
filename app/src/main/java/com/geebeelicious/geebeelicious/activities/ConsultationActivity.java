@@ -64,7 +64,7 @@ public class ConsultationActivity extends ECAActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consultation);
+        setContentView(R.layout.re_activity_consultation);
 
         Button yesButton = (Button)findViewById(R.id.YesButton);
         Button noButton = (Button) findViewById(R.id.NoButton);
