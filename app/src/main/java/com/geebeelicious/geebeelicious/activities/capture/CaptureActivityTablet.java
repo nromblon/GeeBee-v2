@@ -76,7 +76,7 @@ public class CaptureActivityTablet extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tablet_layout);
+        setContentView(R.layout.activity_gbcapture);
 
         instantiateVariables();
 
@@ -251,7 +251,7 @@ public class CaptureActivityTablet extends AppCompatActivity {
         mat_targetOrigImage = new Mat();
         mat_adaptedTresholdedImage = new Mat();
 //        btn_calibrate = (Button) this.findViewById(R.id.btn_calibrate);
-        imageView1 = (ImageView) this.findViewById(R.id.imageView1);
+        imageView1 = (ImageView) this.findViewById(R.id.frontImageView);
         imageView2 = (ImageView) this.findViewById(R.id.imageView2);
         btn_take_picture1 = (Button) this.findViewById(R.id.btn_take_picture1);
         btn_load_image1 = (Button) this.findViewById(R.id.btn_load_image1);

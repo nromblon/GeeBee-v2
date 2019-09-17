@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/DefaultBackground"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:background="@color/colorAccent"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="@dimen/_24ssp"
+            android:layout_height="@dimen/_24ssp"
+            android:layout_marginLeft="12dp"
+            android:background="@null"
+            android:padding="@dimen/_4ssp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/ic_arrow_back" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/photosLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/frontPhotoPanel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_front_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/front_view"
+                android:textAlignment="center"
+                android:textSize="@dimen/_28ssp" />
+
+            <ImageView
+                android:id="@+id/frontImageView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:src="@drawable/front_view_paint"></ImageView>
+
+            <LinearLayout
+                android:id="@+id/frontButtonsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.25"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btn_load_image1"
+                    style="@style/DefaultImageButton"
+                    android:layout_width="@dimen/_50ssp"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_6ssp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_add_photo_gallery" />
+
+                <Space
+                    android:layout_width="@dimen/_30ssp"
+                    android:layout_height="match_parent" />
+
+                <ImageButton
+                    android:id="@+id/btn_take_picture1"
+                    style="@style/DefaultImageButton"
+                    android:layout_width="@dimen/_50ssp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:adjustViewBounds="false"
+                    android:cropToPadding="false"
+                    android:padding="@dimen/_6ssp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_add_photo_camera" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sidePhotoPanel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_side_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/side_view"
+                android:textAlignment="center"
+                android:textSize="@dimen/_28ssp" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:src="@drawable/side_view_paint"></ImageView>
+
+            <LinearLayout
+                android:id="@+id/sideButtonsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.25"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btn_load_image2"
+                    style="@style/DefaultImageButton"
+                    android:layout_width="@dimen/_50ssp"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_6ssp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_add_photo_gallery" />
+
+                <Space
+                    android:layout_width="@dimen/_30ssp"
+                    android:layout_height="match_parent" />
+
+                <ImageButton
+                    android:id="@+id/btn_take_picture2"
+                    style="@style/DefaultImageButton"
+                    android:layout_width="@dimen/_50ssp"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_6ssp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_add_photo_camera" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/computeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginRight="120dp"
+        android:layout_weight="0.4"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="20dp">
+
+        <Button
+            android:id="@+id/btn_compute"
+            style="@style/DefaultButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/compute"
+            android:textSize="@dimen/_16ssp"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/resultsTextLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:text="Height: "
+                android:textAlignment="viewStart"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp" />
+
+            <TextView
+                android:id="@+id/tv_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:text="Weight: "
+                android:textAlignment="viewStart"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp" />
+
+            <TextView
+                android:id="@+id/tv_BMI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:text="BMI: "
+                android:textAlignment="viewStart"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_go_back"
+            style="@style/DefaultButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom|right"
+            android:layout_weight="0.4"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:text="@string/go_back"
+            android:textSize="@dimen/_18ssp"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
