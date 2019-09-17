@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -50,7 +51,7 @@ public class CaptureActivityTablet extends AppCompatActivity {
     Mat mat_adaptedTresholdedImage;
     Button btn_compute, btn_go_back;
     ImageButton btn_take_picture1, btn_load_image1, btn_take_picture2, btn_load_image2, btn_cancel;
-    TextView tv_height, tv_weight, tv_BMI;
+    TextView tv_frontView, tv_sideView, tv_height, tv_weight, tv_BMI;
     int currentImage = 0; // 0 for front, 1 for side
     Double final_height=0.0;
     Double final_weight = 0.0;
@@ -251,22 +252,40 @@ public class CaptureActivityTablet extends AppCompatActivity {
             Log.d(TAG, "OpenCV library found inside package. Using it!");
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
+        Typeface chalkFont = Typeface.createFromAsset(getAssets(), "fonts/DJBChalkItUp.ttf");
         numberOfTimesCalled = 0;
         mat_targetOrigImage = new Mat();
         mat_adaptedTresholdedImage = new Mat();
 //        btn_calibrate = (Button) this.findViewById(R.id.btn_calibrate);
+
+        tv_frontView = (TextView) this.findViewById(R.id.tv_front_view);
+        tv_frontView.setTypeface(chalkFont);
+
+        tv_sideView = (TextView) this.findViewById(R.id.tv_side_view);
+        tv_sideView.setTypeface(chalkFont);
+        
         imageView1 = (ImageView) this.findViewById(R.id.frontImageView);
         imageView2 = (ImageView) this.findViewById(R.id.imageView2);
         btn_take_picture1 = (ImageButton) this.findViewById(R.id.btn_take_picture1);
         btn_load_image1 = (ImageButton) this.findViewById(R.id.btn_load_image1);
         btn_take_picture2 = (ImageButton) this.findViewById(R.id.btn_take_picture2);
         btn_load_image2 = (ImageButton) findViewById(R.id.btn_load_image2);
+
         btn_compute = (Button) findViewById(R.id.btn_compute);
+        btn_compute.setTypeface(chalkFont);
+
         tv_height = (TextView) findViewById(R.id.tv_height);
+        tv_height.setTypeface(chalkFont);
+
         tv_weight = (TextView) findViewById(R.id.tv_weight);
+        tv_weight.setTypeface(chalkFont);
+
         tv_BMI = (TextView) findViewById(R.id.tv_BMI);
+        tv_BMI.setTypeface(chalkFont);
 
         btn_go_back = (Button) findViewById(R.id.btn_go_back);
+        btn_go_back.setTypeface(chalkFont);
+
         btn_cancel = (ImageButton) findViewById(R.id.btn_cancel);
     }
 

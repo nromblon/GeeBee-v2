@@ -56,6 +56,8 @@ public class ConsultationActivity extends ECAActivity {
      */
     private Typeface chalkFont;
 
+    private Button finishBtn;
+
     /**
      * Initializes views and other activity objects.
      *
@@ -68,10 +70,12 @@ public class ConsultationActivity extends ECAActivity {
 
         Button yesButton = (Button)findViewById(R.id.YesButton);
         Button noButton = (Button) findViewById(R.id.NoButton);
+        Button finishBtn = (Button) findViewById(R.id.finishBtn);
 
         chalkFont = Typeface.createFromAsset(getAssets(), "fonts/DJBChalkItUp.ttf");
         yesButton.setTypeface(chalkFont);
         noButton.setTypeface(chalkFont);
+        finishBtn.setTypeface(chalkFont);
 
         patient = getIntent().getExtras().getParcelable("patient");
         String dateConsultation = getIntent().getStringExtra("currentDate");
@@ -100,6 +104,13 @@ public class ConsultationActivity extends ECAActivity {
                 if (!consultationHelper.isConsultationDone()) { //checks if consultation is still ongoing
                     onAnswer(false);  //false because no
                 }
+            }
+        });
+
+        finishBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                finish();
             }
         });
     }
