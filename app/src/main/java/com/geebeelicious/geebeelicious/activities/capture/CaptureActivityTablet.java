@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +48,8 @@ public class CaptureActivityTablet extends AppCompatActivity {
     int numberOfTimesCalled;
     public int n = 0;
     Mat mat_adaptedTresholdedImage;
-    Button btn_take_picture1, btn_load_image1, btn_take_picture2, btn_load_image2, btn_compute, btn_go_back, btn_cancel,btn_calibrate;
+    Button btn_compute, btn_go_back;
+    ImageButton btn_take_picture1, btn_load_image1, btn_take_picture2, btn_load_image2, btn_cancel;
     TextView tv_height, tv_weight, tv_BMI;
     int currentImage = 0; // 0 for front, 1 for side
     Double final_height=0.0;
@@ -202,11 +204,13 @@ public class CaptureActivityTablet extends AppCompatActivity {
                 tv_height.setText(String.format("Height: %.2f", final_height) + "cm");
                 tv_weight.setText(String.format("Weight: %.2f", final_weight) + "kg");
                 tv_BMI.setText(String.format("BMI: %.2f", final_BMI));
+
+                btn_go_back.setEnabled(true);
             }
 
         });
 
-
+        btn_go_back.setEnabled(false);
         btn_go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -253,17 +257,17 @@ public class CaptureActivityTablet extends AppCompatActivity {
 //        btn_calibrate = (Button) this.findViewById(R.id.btn_calibrate);
         imageView1 = (ImageView) this.findViewById(R.id.frontImageView);
         imageView2 = (ImageView) this.findViewById(R.id.imageView2);
-        btn_take_picture1 = (Button) this.findViewById(R.id.btn_take_picture1);
-        btn_load_image1 = (Button) this.findViewById(R.id.btn_load_image1);
-        btn_take_picture2 = (Button) this.findViewById(R.id.btn_take_picture2);
-        btn_load_image2 = (Button) findViewById(R.id.btn_load_image2);
+        btn_take_picture1 = (ImageButton) this.findViewById(R.id.btn_take_picture1);
+        btn_load_image1 = (ImageButton) this.findViewById(R.id.btn_load_image1);
+        btn_take_picture2 = (ImageButton) this.findViewById(R.id.btn_take_picture2);
+        btn_load_image2 = (ImageButton) findViewById(R.id.btn_load_image2);
         btn_compute = (Button) findViewById(R.id.btn_compute);
         tv_height = (TextView) findViewById(R.id.tv_height);
         tv_weight = (TextView) findViewById(R.id.tv_weight);
         tv_BMI = (TextView) findViewById(R.id.tv_BMI);
 
         btn_go_back = (Button) findViewById(R.id.btn_go_back);
-        btn_cancel = (Button) findViewById(R.id.btn_cancel);
+        btn_cancel = (ImageButton) findViewById(R.id.btn_cancel);
     }
 
 
