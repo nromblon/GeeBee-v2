@@ -33,7 +33,7 @@
             android:orientation="vertical"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/placeholderECAText"
@@ -93,7 +93,7 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/_10ssp"
             android:paddingTop="@dimen/_10ssp"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/hpiTitle"
