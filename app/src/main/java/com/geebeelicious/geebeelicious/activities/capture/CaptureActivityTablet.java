@@ -263,7 +263,7 @@ public class CaptureActivityTablet extends AppCompatActivity {
 
         tv_sideView = (TextView) this.findViewById(R.id.tv_side_view);
         tv_sideView.setTypeface(chalkFont);
-        
+
         imageView1 = (ImageView) this.findViewById(R.id.frontImageView);
         imageView2 = (ImageView) this.findViewById(R.id.imageView2);
         btn_take_picture1 = (ImageButton) this.findViewById(R.id.btn_take_picture1);
