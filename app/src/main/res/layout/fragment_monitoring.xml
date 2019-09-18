@@ -14,13 +14,14 @@
         android:layout_centerInParent="true">
 
         <TextView
+            android:id="@+id/questionView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="60sp"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="30dp"
-            android:id="@+id/questionView"
             android:gravity="center"
-            android:layout_centerHorizontal="true" />
+            android:text="Input Weight"
+            android:textSize="60sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -37,13 +38,14 @@
                 android:descendantFocusability="blocksDescendants"></NumberPicker>
 
             <TextView
-                android:layout_marginLeft="30dp"
+                android:id="@+id/unitView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="60sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30dp"
                 android:gravity="center"
-                android:id="@+id/unitView"
-                android:layout_gravity="center_vertical" />
+                android:text="@string/centimeters"
+                android:textSize="60sp" />
 
         </LinearLayout>
 

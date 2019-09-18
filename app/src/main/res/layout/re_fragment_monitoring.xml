@@ -1,0 +1,85 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/DefaultBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top|center_horizontal"
+    android:orientation="vertical"
+    tools:context=".fragments.MonitoringFragment">
+
+    <TextView
+        android:id="@+id/questionView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:layout_weight="0.3"
+        android:gravity="bottom|center"
+        android:textSize="@dimen/_29ssp" />
+
+    <LinearLayout
+        android:id="@+id/numberPickerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.3"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal">
+
+        <NumberPicker
+            android:id="@+id/monitoringNumberPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:descendantFocusability="blocksDescendants"/>
+
+        <TextView
+            android:id="@+id/unitView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:textSize="@dimen/_16ssp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingBottom="40dp"
+        android:paddingLeft="90dp"
+        android:paddingRight="90dp"
+        android:paddingTop="15dp">
+
+        <Button
+            android:id="@+id/saveAnswerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_15ssp"
+            android:paddingLeft="@dimen/_30ssp"
+            android:paddingRight="@dimen/_30ssp"
+            android:paddingTop="@dimen/_15ssp"
+            android:text="@string/save"
+            android:textAlignment="center"
+            android:textSize="@dimen/_14ssp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/useIPAppButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_18ssp"
+            android:padding="@dimen/_15ssp"
+            android:text="@string/use_app"
+            android:textAlignment="center"
+            android:textSize="@dimen/_14ssp"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+</LinearLayout>
