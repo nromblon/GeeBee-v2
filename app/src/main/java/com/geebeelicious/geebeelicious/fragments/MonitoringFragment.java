@@ -103,7 +103,7 @@ public class MonitoringFragment extends MonitoringTestFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_monitoring, container, false);
+        view = inflater.inflate(R.layout.re_fragment_monitoring, container, false);
 
         questionView = (TextView) view.findViewById(R.id.questionView);
         unitView = (TextView) view.findViewById(R.id.unitView);
