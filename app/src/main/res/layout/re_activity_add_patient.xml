@@ -66,24 +66,28 @@
 
                 <RadioButton
                     android:id="@+id/radioButton1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="30dp"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:text="@string/right_handed"
                     android:textColor="#FFFFFF"
-                    android:textSize="@dimen/_18ssp" />
+                    android:textSize="@dimen/_16ssp" />
+
+                <Space
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5" />
 
                 <RadioButton
                     android:id="@+id/radioButton2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:text="@string/left_handed"
                     android:textColor="#FFFFFF"
-                    android:textSize="@dimen/_18ssp" />
+                    android:textSize="@dimen/_16ssp" />
 
             </RadioGroup>
 
