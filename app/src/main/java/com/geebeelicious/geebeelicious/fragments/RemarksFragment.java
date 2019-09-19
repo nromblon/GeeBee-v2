@@ -81,7 +81,7 @@ public class RemarksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_remarks, container, false);
+        view = inflater.inflate(R.layout.re_fragment_remarks, container, false);
 
         final ImageButton recordButton = (ImageButton) view.findViewById(R.id.recordButton);
         final ImageButton playButton = (ImageButton) view.findViewById(R.id.playButton);
