@@ -10,9 +10,9 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geebeelicious.geebeelicious.R;
@@ -204,7 +204,7 @@ public class AddPatientActivity extends ECAActivity implements RemarksFragment.O
                         ecaFragment.sendToECAToSPeak(R.string.add_patient_confirm);
                         break;
                     case 5:
-                        RelativeLayout saveCancelLayout = (RelativeLayout) findViewById(R.id.saveCancelLayout);
+                        LinearLayout saveCancelLayout = (LinearLayout) findViewById(R.id.saveCancelLayout);
                         questionView.setVisibility(View.GONE);
                         saveCancelLayout.setVisibility(View.GONE);
                         FrameLayout remarksLayout = (FrameLayout) findViewById(R.id.remarksFragmentContainer);

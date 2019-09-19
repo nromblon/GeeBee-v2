@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geebeelicious.geebeelicious.R;
@@ -86,7 +85,7 @@ public class RemarksFragment extends Fragment {
         final ImageButton recordButton = (ImageButton) view.findViewById(R.id.recordButton);
         final ImageButton playButton = (ImageButton) view.findViewById(R.id.playButton);
         final EditText remarkText = (EditText) view.findViewById(R.id.remarkText);
-        final RelativeLayout remarkLayout = (RelativeLayout) view.findViewById(R.id.remarkLayout);
+        final LinearLayout remarkLayout = (LinearLayout) view.findViewById(R.id.remarkLayout);
 
         Button saveButton = (Button) view.findViewById(R.id.saveButton);
         Button yesButton = (Button) view.findViewById(R.id.yesButton);
@@ -138,7 +137,7 @@ public class RemarksFragment extends Fragment {
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RelativeLayout remarkQuestionLayout = (RelativeLayout) view.findViewById(R.id.remarksQuestionLayout);
+                LinearLayout remarkQuestionLayout = (LinearLayout) view.findViewById(R.id.remarksQuestionLayout);
 
                 remarkLayout.setVisibility(View.VISIBLE);
                 remarkQuestionLayout.setVisibility(View.GONE);
