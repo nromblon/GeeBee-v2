@@ -62,7 +62,7 @@
                 android:checkedButton="@+id/radioButton1"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <RadioButton
                     android:id="@+id/radioButton1"

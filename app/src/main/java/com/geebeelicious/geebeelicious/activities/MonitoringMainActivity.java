@@ -116,7 +116,7 @@ public class MonitoringMainActivity extends ECAActivity implements OnMonitoringF
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_monitoring_main);
+        setContentView(R.layout.re_activity_monitoring_main);
 
         ecaText = (TextView) findViewById(R.id.placeholderECAText);
         resultsText = (TextView) findViewById(R.id.placeholderResults);
@@ -264,7 +264,7 @@ public class MonitoringMainActivity extends ECAActivity implements OnMonitoringF
                             replaceFragment(nextFragment);
                         }
 
-                    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+                    } catch (Exception e) {
                         Log.e(TAG, "Error in initializing the fragment", e);
                     }
                 }
@@ -365,7 +365,7 @@ public class MonitoringMainActivity extends ECAActivity implements OnMonitoringF
                 oldFragment = (Fragment) Class.forName(fragments[0]).newInstance();
                 replaceFragment(oldFragment);
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+        } catch (Exception e) {
             Log.e(TAG, "Error in initializing the fragment", e);
         }
     }

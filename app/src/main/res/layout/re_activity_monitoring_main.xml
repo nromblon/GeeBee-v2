@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:orientation="horizontal"
+    tools:context=".activities.MonitoringMainActivity"
+    android:clickable="true"
+    android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:id="@+id/ecaTextTransitionLayout"
+        style="@style/DefaultBackground"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_toStartOf="@+id/linearLayoutECA"
+        android:layout_weight=".4"
+        android:animateLayoutChanges="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_15ssp"
+        android:paddingLeft="@dimen/_8ssp"
+        android:paddingRight="@dimen/_8ssp"
+        android:paddingTop="@dimen/_15ssp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/ecaTransitionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/colorVision_intro"
+            android:textSize="@dimen/_18ssp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/readyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10ssp"
+            android:text="@string/ready"
+            android:textSize="@dimen/_18ssp" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/monitoringFragmentContainer"
+        style="@style/DefaultBackground"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_toStartOf="@+id/linearLayoutECA"
+        android:layout_weight=".8"
+        android:animateLayoutChanges="true"
+        tools:layout="@layout/fragment_monitoring" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutECA"
+        style="@style/DefaultBackground"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_weight=".3"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <FrameLayout
+            android:id="@+id/placeholderECA"
+            style="@style/ECAPlaceholder"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".42"
+            android:longClickable="false" />
+
+        <TextView
+            android:id="@+id/placeholderECAText"
+            style="@style/DefaultBackground"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".1"
+            android:padding="@dimen/_2ssp"
+            android:textSize="@dimen/_12ssp" />
+
+        <TextView
+            android:id="@+id/placeholderResults"
+            style="@style/DefaultBackground"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".55"
+            android:maxLines="3"
+            android:padding="@dimen/_8ssp"
+            android:scrollbars="vertical"
+            android:textSize="@dimen/_14ssp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
