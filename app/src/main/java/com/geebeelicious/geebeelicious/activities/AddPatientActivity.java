@@ -101,7 +101,7 @@ public class AddPatientActivity extends ECAActivity implements RemarksFragment.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_patient);
+        setContentView(R.layout.re_activity_add_patient);
 
         questionView = (TextView) findViewById(R.id.questionView);
         editText = (EditText) findViewById(R.id.newPatientStringInput);

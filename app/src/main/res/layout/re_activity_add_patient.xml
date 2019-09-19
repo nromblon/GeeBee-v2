@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    style="@style/DefaultBackground"
+    tools:context=".activities.AddPatientActivity">
+
+    <LinearLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_toStartOf="@+id/linearLayoutECA"
+        android:layout_weight=".7">
+
+        <LinearLayout
+            android:id="@+id/newPatientQuestionView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/questionView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textSize="@dimen/_28ssp" />
+
+            <EditText
+                android:id="@+id/newPatientStringInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/questionView"
+                android:gravity="center"
+                android:inputType="textCapWords"
+                android:textSize="@dimen/_20ssp"
+                android:visibility="gone" />
+
+            <DatePicker
+                android:id="@+id/newPatientDatePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/questionView"
+                android:calendarViewShown="false"
+                android:descendantFocusability="blocksDescendants"
+                android:startYear="2000"
+                android:visibility="gone"></DatePicker>
+
+            <RadioGroup
+                android:id="@+id/newPatientRadioChoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/questionView"
+                android:layout_centerHorizontal="true"
+                android:checkedButton="@+id/radioButton1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <RadioButton
+                    android:id="@+id/radioButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="100dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="@dimen/_20ssp" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="@dimen/_20ssp" />
+
+            </RadioGroup>
+
+            <FrameLayout
+                android:id="@+id/remarksFragmentContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutECA"
+        style="@style/DefaultBackground"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_weight=".3"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/placeholderECA"
+            style="@style/ECAPlaceholder"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="0.3"
+            android:longClickable="false" />
+
+        <TextView
+            android:id="@+id/placeholderECAText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/placeholderECA"
+            android:layout_weight="0.1"
+            android:padding="5dp"
+            android:paddingTop="10dp" />
+
+        <LinearLayout
+            android:id="@+id/saveCancelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:gravity="bottom|center_vertical|center"
+            android:orientation="vertical"
+            android:paddingBottom="50dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="42dp">
+
+            <Button
+                android:id="@+id/saveNewPatientButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignEnd="@+id/cancelNewPatientButton"
+                android:layout_alignStart="@+id/cancelNewPatientButton"
+                android:layout_weight=".5"
+                android:text="@string/save"
+                android:textSize="@dimen/_14ssp" />
+
+            <Button
+                android:id="@+id/cancelNewPatientButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_below="@+id/saveNewPatientButton"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:layout_weight=".4"
+                android:text="@string/cancel"
+                android:textSize="@dimen/_14ssp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
