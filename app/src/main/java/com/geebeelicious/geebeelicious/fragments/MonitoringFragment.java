@@ -94,6 +94,7 @@ public class MonitoringFragment extends MonitoringTestFragment {
      */
     private OnMonitoringFragmentInteractionListener fragmentInteraction;
 
+    private double detectedHeight, detectedWeight;
     /**
      * Initializes views and other fragment objects.
      *
@@ -103,6 +104,9 @@ public class MonitoringFragment extends MonitoringTestFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        detectedHeight = -1;
+        detectedWeight = -1;
+
         view = inflater.inflate(R.layout.re_fragment_monitoring, container, false);
 
         questionView = (TextView) view.findViewById(R.id.questionView);
@@ -129,6 +133,7 @@ public class MonitoringFragment extends MonitoringTestFragment {
                 switch (questionsCounter) {
                     case 0:
                         record.setHeight(new Integer(numberPicker.getValue()).doubleValue());
+
                         numberPicker.setMaxValue(100);
                         break;
                     case 1:
@@ -174,11 +179,22 @@ public class MonitoringFragment extends MonitoringTestFragment {
 //                byte[] silhouette = data.getExtras().getByteArray("silhouette");
                 Log.d(TAG,"Result received: Height: "+height+" | weight: "+weight);
 
-                record.setHeight(height);
-                record.setWeight(weight);
+                detectedHeight = height;
+                detectedWeight = weight;
+
+                defaultValues[0] = (int) Math.round(detectedHeight);
+                defaultValues[1] = (int) Math.round(detectedWeight);
+
+                if(questionsCounter == 0)
+                    numberPicker.setValue((int) Math.round(height));
+                else if(questionsCounter == 1)
+                    numberPicker.setValue((int) Math.round(weight));
+
+//                record.setHeight(height);
+//                record.setWeight(weight);
 //                record.setSilhouette(silhouette);
 
-                endMonitoring();
+//                endMonitoring();
             }
             if(resultCode == Activity.RESULT_CANCELED) {
                 super.onResume();
