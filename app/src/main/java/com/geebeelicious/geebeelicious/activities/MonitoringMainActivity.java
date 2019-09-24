@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -113,6 +114,9 @@ public class MonitoringMainActivity extends ECAActivity implements OnMonitoringF
      *
      * @see android.app.Activity#onCreate(Bundle)
      */
+
+    private ViewGroup.LayoutParams originalECALayoutParams, originalECAParentParams;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -410,33 +414,71 @@ public class MonitoringMainActivity extends ECAActivity implements OnMonitoringF
      * Sets the ECA frame to full screen.
      */
     private void maximizeToFullScreenECAFragment() {
-        LinearLayout ecaLinearLayout = (LinearLayout) findViewById(R.id.linearLayoutECA);
 
+//        View parent = (View) ecaLinearLayout.getParent();
+//        final int mToHeight = parent.getHeight();
+//        final int mToWidth = parent.getWidth();
 
-        View parent = (View) ecaLinearLayout.getParent();
-        final int mToHeight = parent.getHeight();
-        final int mToWidth = parent.getWidth();
-        ecaFragmentLayout.setLayoutParams(new LinearLayout.LayoutParams(mToWidth, mToHeight));
+        // Create 'maximize' and 'enlarge' layout params preset for Linear Layouts
+        ViewGroup.LayoutParams maximized = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT,1);
+
+        // Get ECAFrame's parent's (linearLayoutECA) layout paramters
+        originalECALayoutParams = ecaFragmentLayout.getLayoutParams();
+
+        // Set 'maximize' preset to ECAFragment
+//        ecaFragmentLayout.setLayoutParams(new LinearLayout.LayoutParams(mToWidth, mToHeight));
+        ecaFragmentLayout.setLayoutParams(maximized);
+
+        // Get linearLayoutECA's layout parameters (ECAFragment's parent)
+        LinearLayout linearLayoutECA = (LinearLayout) findViewById(R.id.linearLayoutECA);
+
+        // Get linearLayoutECA's parent's (linearLayoutECA) layout paramters
+        originalECAParentParams = linearLayoutECA.getLayoutParams();
+        linearLayoutECA.setLayoutParams(maximized);
     }
 
     /**
      * Sets the ECA frame to full height and adjust the width as equal to the new height.
      */
     private void maximizeToBigECAFragment() {
-        LinearLayout ecaLinearLayout = (LinearLayout) findViewById(R.id.linearLayoutECA);
+        // Create 'maximize' and 'widen' layout params preset for Linear Layouts
+        ViewGroup.LayoutParams maximized = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT,1);
+        ViewGroup.LayoutParams widen = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,0.9f);
 
-        View parent = (View) ecaLinearLayout.getParent();
-        final int mToHeight = parent.getHeight();
-        ecaFragmentLayout.setLayoutParams(new LinearLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.activity_eca_big),
-                mToHeight));
+//        View parent = (View) ecaLinearLayout.getParent();
+//        final int mToHeight = parent.getHeight();
+
+        // Get ECAFrame's parent's (linearLayoutECA) layout parameters
+        originalECALayoutParams = ecaFragmentLayout.getLayoutParams();
+
+//        ecaFragmentLayout.setLayoutParams(new LinearLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.activity_eca_big),
+//                mToHeight));
+
+        // Set 'maximize' preset to ECAFragment
+        ecaFragmentLayout.setLayoutParams(maximized);
+
+        // Get linearLayoutECA's layout parameters (ECAFragment's parent)
+        LinearLayout linearLayoutECA = (LinearLayout) findViewById(R.id.linearLayoutECA);
+
+        // Get linearLayoutECA's parent's (linearLayoutECA) layout paramters
+        originalECAParentParams = linearLayoutECA.getLayoutParams();
+        linearLayoutECA.setLayoutParams(widen);
+
+        // Hide monitoring fragment container
+        FrameLayout monitoringFragmentcontainer = (FrameLayout) findViewById(R.id.monitoringFragmentContainer);
+        monitoringFragmentcontainer.setVisibility(View.GONE);
     }
 
     /**
      * Sets the ECA back to its original size
      */
     private void minimizeECAFragment() {
-        ecaFragmentLayout.setLayoutParams(new LinearLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.activity_eca_small),
-                getResources().getDimensionPixelSize(R.dimen.activity_eca_small)));
+        LinearLayout linearLayoutECA = (LinearLayout) findViewById(R.id.linearLayoutECA);
+        FrameLayout monitoringFragmentcontainer = (FrameLayout) findViewById(R.id.monitoringFragmentContainer);
+
+        ecaFragmentLayout.setLayoutParams(originalECALayoutParams);
+        linearLayoutECA.setLayoutParams(originalECAParentParams);
+        monitoringFragmentcontainer.setVisibility(View.VISIBLE);
     }
 
     /**

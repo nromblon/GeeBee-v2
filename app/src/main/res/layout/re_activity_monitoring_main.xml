@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/colorVision_intro"
-            android:textSize="@dimen/_18ssp" />
+            android:textSize="@dimen/_16ssp" />
 
         <Space
             android:layout_width="match_parent"
@@ -56,6 +56,7 @@
         android:layout_toStartOf="@+id/linearLayoutECA"
         android:layout_weight=".8"
         android:animateLayoutChanges="true"
+        android:visibility="visible"
         tools:layout="@layout/fragment_monitoring" />
 
     <LinearLayout
@@ -83,20 +84,20 @@
             style="@style/DefaultBackground"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".1"
+            android:layout_weight=".3"
             android:padding="@dimen/_2ssp"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_10ssp" />
 
         <TextView
             android:id="@+id/placeholderResults"
             style="@style/DefaultBackground"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".55"
+            android:layout_weight=".35"
             android:maxLines="3"
             android:padding="@dimen/_8ssp"
             android:scrollbars="vertical"
-            android:textSize="@dimen/_14ssp" />
+            android:textSize="@dimen/_10ssp" />
 
     </LinearLayout>
 
